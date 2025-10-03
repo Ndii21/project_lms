@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatelessWidget {
-  const DashboardPage({Key? key}) : super(key: key);
+  final String userName;
+  final Function(int) onQuickAccessTap;
+
+  const DashboardPage({
+    Key? key,
+    required this.userName,
+    required this.onQuickAccessTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +70,9 @@ class DashboardPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Halo, Budi!',
-                    style: TextStyle(
+                  Text(
+                    'Halo, $userName!',
+                    style: const TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFFECF0F1),
@@ -159,25 +166,44 @@ class DashboardPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _buildQuickAccessButton(
-                        'Jadwal',
-                        Icons.schedule,
-                        const Color(0xFF3498DB),
+                      // Tombol Jadwal
+                      GestureDetector(
+                        onTap: () =>
+                            onQuickAccessTap(1), // Index 1 untuk Jadwal
+                        child: _buildQuickAccessButton(
+                          'Jadwal',
+                          Icons.schedule,
+                          const Color(0xFF3498DB),
+                        ),
                       ),
-                      _buildQuickAccessButton(
-                        'Materi',
-                        Icons.book,
-                        const Color(0xFF27AE60),
+                      // Tombol Materi
+                      GestureDetector(
+                        onTap: () =>
+                            onQuickAccessTap(2), // Index 2 untuk Materi
+                        child: _buildQuickAccessButton(
+                          'Materi',
+                          Icons.book,
+                          const Color(0xFF27AE60),
+                        ),
                       ),
-                      _buildQuickAccessButton(
-                        'Nilai',
-                        Icons.grade,
-                        const Color(0xFFE67E22),
+                      // Tombol Nilai
+                      GestureDetector(
+                        onTap: () => onQuickAccessTap(3), // Index 3 untuk Nilai
+                        child: _buildQuickAccessButton(
+                          'Nilai',
+                          Icons.grade,
+                          const Color(0xFFE67E22),
+                        ),
                       ),
-                      _buildQuickAccessButton(
-                        'Profil',
-                        Icons.person,
-                        const Color(0xFF9B59B6),
+                      // Tombol Profil
+                      GestureDetector(
+                        onTap: () =>
+                            onQuickAccessTap(4), // Index 4 untuk Profil
+                        child: _buildQuickAccessButton(
+                          'Profil',
+                          Icons.person,
+                          const Color(0xFF9B59B6),
+                        ),
                       ),
                     ],
                   ),

@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  final String userName;
+  final String userNim;
+
+  const ProfilePage({
+    Key? key,
+    required this.userName,
+    required this.userNim,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +66,9 @@ class ProfilePage extends StatelessWidget {
                   const SizedBox(height: 16),
 
                   // Nama mahasiswa
-                  const Text(
-                    'Budi Santoso',
-                    style: TextStyle(
+                  Text(
+                    userName,
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFFECF0F1),
@@ -71,7 +78,7 @@ class ProfilePage extends StatelessWidget {
 
                   // NIM
                   Text(
-                    'NIM: 2021110001',
+                    'NIM: $userNim',
                     style: TextStyle(
                       fontSize: 14,
                       color: const Color(0xFFECF0F1).withOpacity(0.8),

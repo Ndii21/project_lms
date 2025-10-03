@@ -9,11 +9,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _nameController = TextEditingController();
   final _nimController = TextEditingController();
   final _passwordController = TextEditingController();
 
   @override
   void dispose() {
+    _nameController.dispose();
     _nimController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -21,10 +23,18 @@ class _LoginPageState extends State<LoginPage> {
 
   // Fungsi login sederhana tanpa verifikasi
   void _handleLogin() {
-    // Langsung navigasi ke halaman utama
+    final enteredName = _nameController.text;
+    final enteredNim = _nimController.text;
+
+    // Langsung navigasi ke halaman utama dengan membawa data nama dan NIM
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const MainNavigation()),
+      MaterialPageRoute(
+        builder: (context) => MainNavigation(
+          userName: enteredName,
+          userNim: enteredNim,
+        ),
+      ),
     );
   }
 
@@ -73,6 +83,24 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 50),
+
+                // Form Input Nama
+                TextField(
+                  controller: _nameController,
+                  style: const TextStyle(color: Color(0xFF2C3E50)),
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    hintText: 'Nama Lengkap',
+                    prefixIcon:
+                        const Icon(Icons.person_outline, color: Color(0xFF3498DB)),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
 
                 // Form Input NIM
                 TextField(

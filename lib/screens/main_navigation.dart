@@ -6,7 +6,14 @@ import 'grades_page.dart';
 import 'profile_page.dart';
 
 class MainNavigation extends StatefulWidget {
-  const MainNavigation({Key? key}) : super(key: key);
+  final String userName;
+  final String userNim;
+
+  const MainNavigation({
+    Key? key,
+    required this.userName,
+    required this.userNim,
+  }) : super(key: key);
 
   @override
   State<MainNavigation> createState() => _MainNavigationState();
@@ -17,13 +24,27 @@ class _MainNavigationState extends State<MainNavigation> {
   int _currentIndex = 0;
 
   // Daftar halaman yang akan ditampilkan
-  final List<Widget> _pages = [
-    const DashboardPage(),
-    const SchedulePage(),
-    const MaterialsPage(),
-    const GradesPage(),
-    const ProfilePage(),
-  ];
+  late final List<Widget> _pages;
+
+  @override
+  void initState() {
+    super.initState();
+    // Inisialisasi list halaman di sini
+    _pages = [
+      DashboardPage(userName: widget.userName, onQuickAccessTap: _onQuickAccessTap),
+      const SchedulePage(),
+      const MaterialsPage(),
+      const GradesPage(),
+      ProfilePage(userName: widget.userName, userNim: widget.userNim),
+    ];
+  }
+
+  // Fungsi untuk mengubah index halaman saat tombol akses cepat di dashboard diklik
+  void _onQuickAccessTap(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

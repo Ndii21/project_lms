@@ -92,8 +92,8 @@ class _LoginPageState extends State<LoginPage> {
                     filled: true,
                     fillColor: Colors.white,
                     hintText: 'Nama Lengkap',
-                    prefixIcon:
-                        const Icon(Icons.person_outline, color: Color(0xFF3498DB)),
+                    prefixIcon: const Icon(Icons.person_outline,
+                        color: Color(0xFF3498DB)),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,

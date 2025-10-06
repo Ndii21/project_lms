@@ -20,17 +20,6 @@ class _ProfilePageState extends State<ProfilePage> {
   int _selectedIndex = 0;
 
   // Data dummy untuk masing-masing halaman
-  final Map<String, dynamic> _biodata = {
-    'Nama': 'Ahmad Zaki',
-    'NIM': '210202021',
-    'Agama': 'Islam',
-    'Status Kawin': 'Belum Kawin',
-    'Jenis Kelamin': 'Laki-laki',
-    'Tgl Lahir': '20 Februari 2003',
-    'Alamat': 'Jl. Kebahagiaan No. 123, Jakarta',
-    'No HP': '081234567890',
-  };
-
   final List<Map<String, dynamic>> _akademikData = [
     {
       'semester': 1,
@@ -333,6 +322,18 @@ class _ProfilePageState extends State<ProfilePage> {
   // --- Widget untuk masing-masing halaman ---
 
   Widget _buildBiodataSection() {
+    // Data biodata yang dinamis berdasarkan input login
+    final Map<String, dynamic> biodata = {
+      'Nama': widget.userName,
+      'NIM': widget.userNim,
+      'Agama': 'Islam',
+      'Status Kawin': 'Belum Kawin',
+      'Jenis Kelamin': 'Laki-laki',
+      'Tgl Lahir': '20 Februari 2003',
+      'Alamat': 'Jl. Kebahagiaan No. 123, Jakarta',
+      'No HP': '081234567890',
+    };
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
@@ -347,7 +348,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           const SizedBox(height: 12),
-          ..._biodata.entries
+          ...biodata.entries
               .map((entry) => _buildDetailRow(entry.key, entry.value))
               .toList(),
         ],

@@ -50,6 +50,7 @@ class MaterialsPage extends StatelessWidget {
         'Materi-1-Pengenalan-Algoritma.pdf',
         'Materi-2-Struktur-Data.pdf',
         'Materi-3-Sorting-Searching.pdf',
+        'Materi-4-Merge Sort.pdf',
         'Presentasi-Kompleksitas-Algoritma.pptx',
         'Latihan-Soal.pdf',
       ],

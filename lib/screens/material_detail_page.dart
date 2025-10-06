@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MaterialDetailPage extends StatelessWidget {
+class MaterialDetailPage extends StatefulWidget {
   final String courseName;
   final List<String> materials;
   final Color color;
@@ -11,6 +11,56 @@ class MaterialDetailPage extends StatelessWidget {
     required this.materials,
     required this.color,
   }) : super(key: key);
+
+  @override
+  State<MaterialDetailPage> createState() => _MaterialDetailPageState();
+}
+
+class _MaterialDetailPageState extends State<MaterialDetailPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  // Data dummy untuk penugasan
+  final List<Map<String, dynamic>> _assignments = const [
+    {
+      'title': 'Tugas Mandiri 1',
+      'dueDate': 'Tenggat: 25 Oktober 2025',
+      'status': 'Belum Dikumpulkan',
+    },
+    {
+      'title': 'Studi Kasus Kelompok',
+      'dueDate': 'Tenggat: 31 Oktober 2025',
+      'status': 'Belum Dikumpulkan',
+    },
+  ];
+
+  // Data dummy untuk video
+  final List<Map<String, dynamic>> _videos = const [
+    {
+      'title': 'Pengenalan Flutter Part 1',
+      'duration': '15:30',
+    },
+    {
+      'title': 'Widget Dasar Flutter',
+      'duration': '20:10',
+    },
+    {
+      'title': 'State Management Sederhana',
+      'duration': '18:45',
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -24,26 +74,81 @@ class MaterialDetailPage extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
-          courseName,
+          widget.courseName,
           style: const TextStyle(color: Color(0xFFECF0F1)),
         ),
+        bottom: TabBar(
+          controller: _tabController,
+          labelColor: const Color(0xFF3498DB),
+          unselectedLabelColor: const Color(0xFFECF0F1).withOpacity(0.6),
+          indicatorColor: const Color(0xFF3498DB),
+          tabs: const [
+            Tab(text: 'Materi'),
+            Tab(text: 'Penugasan'),
+            Tab(text: 'Video'),
+          ],
+        ),
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: materials.length,
-        itemBuilder: (context, index) {
-          String fileName = materials[index];
-          String fileExtension = fileName.split('.').last.toUpperCase();
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          // Tab: Materi
+          _buildMaterialsTab(),
 
-          return _buildMaterialCard(fileName, fileExtension);
-        },
+          // Tab: Penugasan
+          _buildAssignmentsTab(),
+
+          // Tab: Video
+          _buildVideosTab(),
+        ],
       ),
+    );
+  }
+
+  Widget _buildMaterialsTab() {
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: widget.materials.length,
+      itemBuilder: (context, index) {
+        String fileName = widget.materials[index];
+        String fileExtension = fileName.split('.').last.toUpperCase();
+
+        return _buildMaterialCard(fileName, fileExtension);
+      },
+    );
+  }
+
+  Widget _buildAssignmentsTab() {
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: _assignments.length,
+      itemBuilder: (context, index) {
+        final assignment = _assignments[index];
+        return _buildAssignmentCard(
+          assignment['title'],
+          assignment['dueDate'],
+          assignment['status'],
+        );
+      },
+    );
+  }
+
+  Widget _buildVideosTab() {
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: _videos.length,
+      itemBuilder: (context, index) {
+        final video = _videos[index];
+        return _buildVideoCard(
+          video['title'],
+          video['duration'],
+        );
+      },
     );
   }
 
   // Widget untuk kartu file materi
   Widget _buildMaterialCard(String fileName, String fileExtension) {
-    // Menentukan icon berdasarkan ekstensi file
     IconData fileIcon;
     Color iconColor;
 
@@ -88,7 +193,6 @@ class MaterialDetailPage extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Icon file
           Container(
             width: 50,
             height: 50,
@@ -103,8 +207,6 @@ class MaterialDetailPage extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 16),
-
-          // Nama file
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,18 +230,177 @@ class MaterialDetailPage extends StatelessWidget {
               ],
             ),
           ),
-
-          // Icon download (hanya visual, tidak ada fungsi)
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
+              color: widget.color.withOpacity(0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(
               Icons.download,
-              color: color,
+              color: widget.color,
               size: 20,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Widget untuk kartu penugasan
+  Widget _buildAssignmentCard(String title, String dueDate, String status) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: const Color(0xFF9B59B6).withOpacity(0.1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Icon(
+              Icons.assignment,
+              color: Color(0xFF9B59B6),
+              size: 28,
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF2C3E50),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  dueDate,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: const Color(0xFF2C3E50).withOpacity(0.5),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  status,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: status == 'Belum Dikumpulkan' ? Colors.red : Colors.green,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              color: widget.color.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Text(
+              'Upload',
+              style: TextStyle(
+                color: widget.color,
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Widget untuk kartu video
+  Widget _buildVideoCard(String title, String duration) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: const Color(0xFF3498DB).withOpacity(0.1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Icon(
+              Icons.play_circle_fill,
+              color: Color(0xFF3498DB),
+              size: 28,
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF2C3E50),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  duration,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: const Color(0xFF2C3E50).withOpacity(0.5),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              color: widget.color.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Text(
+              'Tonton',
+              style: TextStyle(
+                color: widget.color,
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],

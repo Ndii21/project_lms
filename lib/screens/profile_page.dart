@@ -623,8 +623,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   const CircleAvatar(
                     radius: 50,
-                    backgroundImage: NetworkImage(
-                        'https://picsum.photos/200'), // Ganti dengan foto profil asli
+                    backgroundImage: AssetImage('assets/images/profil.jpg'),
                   ),
                   const SizedBox(height: 12),
                   Text(

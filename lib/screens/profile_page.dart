@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Ubah StatelessWidget menjadi StatefulWidget
 class ProfilePage extends StatefulWidget {
   final String userName;
   final String userNim;
@@ -25,55 +24,190 @@ class _ProfilePageState extends State<ProfilePage> {
       'semester': 1,
       'ip': 3.85,
       'matkul': [
-        {'no': 1, 'kode': 'MK101', 'nama': 'Pengantar Informatika', 'sks': 3, 'nilai_angka': 90, 'nilai_huruf': 'A'},
-        {'no': 2, 'kode': 'MK102', 'nama': 'Algoritma dan Pemrograman', 'sks': 4, 'nilai_angka': 85, 'nilai_huruf': 'A-'},
-        {'no': 3, 'kode': 'MK103', 'nama': 'Matematika Dasar', 'sks': 3, 'nilai_angka': 88, 'nilai_huruf': 'A'},
+        {
+          'no': 1,
+          'kode': 'MK101',
+          'nama': 'Pengantar Informatika',
+          'sks': 3,
+          'nilai_angka': 90,
+          'nilai_huruf': 'A'
+        },
+        {
+          'no': 2,
+          'kode': 'MK102',
+          'nama': 'Algoritma dan Pemrograman',
+          'sks': 4,
+          'nilai_angka': 85,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 3,
+          'kode': 'MK103',
+          'nama': 'Matematika Dasar',
+          'sks': 3,
+          'nilai_angka': 88,
+          'nilai_huruf': 'A'
+        },
       ]
     },
     {
       'semester': 2,
       'ip': 3.70,
       'matkul': [
-        {'no': 1, 'kode': 'MK201', 'nama': 'Struktur Data', 'sks': 4, 'nilai_angka': 80, 'nilai_huruf': 'B+'},
-        {'no': 2, 'kode': 'MK202', 'nama': 'Basis Data', 'sks': 4, 'nilai_angka': 87, 'nilai_huruf': 'A'},
-        {'no': 3, 'kode': 'MK203', 'nama': 'Jaringan Komputer', 'sks': 3, 'nilai_angka': 82, 'nilai_huruf': 'B+'},
+        {
+          'no': 1,
+          'kode': 'MK201',
+          'nama': 'Struktur Data',
+          'sks': 4,
+          'nilai_angka': 80,
+          'nilai_huruf': 'B+'
+        },
+        {
+          'no': 2,
+          'kode': 'MK202',
+          'nama': 'Basis Data',
+          'sks': 4,
+          'nilai_angka': 87,
+          'nilai_huruf': 'A'
+        },
+        {
+          'no': 3,
+          'kode': 'MK203',
+          'nama': 'Jaringan Komputer',
+          'sks': 3,
+          'nilai_angka': 82,
+          'nilai_huruf': 'B+'
+        },
       ]
     },
     {
       'semester': 3,
       'ip': 3.92,
       'matkul': [
-        {'no': 1, 'kode': 'MK301', 'nama': 'Pemrograman Berorientasi Objek', 'sks': 4, 'nilai_angka': 95, 'nilai_huruf': 'A'},
-        {'no': 2, 'kode': 'MK302', 'nama': 'Sistem Operasi', 'sks': 3, 'nilai_angka': 89, 'nilai_huruf': 'A-'},
-        {'no': 3, 'kode': 'MK303', 'nama': 'Pemrograman Web', 'sks': 4, 'nilai_angka': 91, 'nilai_huruf': 'A'},
+        {
+          'no': 1,
+          'kode': 'MK301',
+          'nama': 'Pemrograman Berorientasi Objek',
+          'sks': 4,
+          'nilai_angka': 95,
+          'nilai_huruf': 'A'
+        },
+        {
+          'no': 2,
+          'kode': 'MK302',
+          'nama': 'Sistem Operasi',
+          'sks': 3,
+          'nilai_angka': 89,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 3,
+          'kode': 'MK303',
+          'nama': 'Pemrograman Web',
+          'sks': 4,
+          'nilai_angka': 91,
+          'nilai_huruf': 'A'
+        },
       ]
     },
     {
       'semester': 4,
       'ip': 3.65,
       'matkul': [
-        {'no': 1, 'kode': 'MK401', 'nama': 'Kecerdasan Buatan', 'sks': 3, 'nilai_angka': 80, 'nilai_huruf': 'B+'},
-        {'no': 2, 'kode': 'MK402', 'nama': 'Analisis dan Perancangan Sistem', 'sks': 4, 'nilai_angka': 85, 'nilai_huruf': 'A-'},
-        {'no': 3, 'kode': 'MK403', 'nama': 'Interaksi Manusia dan Komputer', 'sks': 3, 'nilai_angka': 78, 'nilai_huruf': 'B'},
+        {
+          'no': 1,
+          'kode': 'MK401',
+          'nama': 'Kecerdasan Buatan',
+          'sks': 3,
+          'nilai_angka': 80,
+          'nilai_huruf': 'B+'
+        },
+        {
+          'no': 2,
+          'kode': 'MK402',
+          'nama': 'Analisis dan Perancangan Sistem',
+          'sks': 4,
+          'nilai_angka': 85,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 3,
+          'kode': 'MK403',
+          'nama': 'Interaksi Manusia dan Komputer',
+          'sks': 3,
+          'nilai_angka': 78,
+          'nilai_huruf': 'B'
+        },
       ]
     },
     {
       'semester': 5,
       'ip': 3.80,
       'matkul': [
-        {'no': 1, 'kode': 'MK501', 'nama': 'Pemrograman Mobile', 'sks': 4, 'nilai_angka': 88, 'nilai_huruf': 'A'},
-        {'no': 2, 'kode': 'MK502', 'nama': 'Data Mining', 'sks': 3, 'nilai_angka': 85, 'nilai_huruf': 'A-'},
-        {'no': 3, 'kode': 'MK503', 'nama': 'Manajemen Proyek TI', 'sks': 3, 'nilai_angka': 83, 'nilai_huruf': 'B+'},
+        {
+          'no': 1,
+          'kode': 'MK501',
+          'nama': 'Pemrograman Mobile',
+          'sks': 4,
+          'nilai_angka': 88,
+          'nilai_huruf': 'A'
+        },
+        {
+          'no': 2,
+          'kode': 'MK502',
+          'nama': 'Data Mining',
+          'sks': 3,
+          'nilai_angka': 85,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 3,
+          'kode': 'MK503',
+          'nama': 'Manajemen Proyek TI',
+          'sks': 3,
+          'nilai_angka': 83,
+          'nilai_huruf': 'B+'
+        },
       ]
     },
   ];
 
   final List<Map<String, dynamic>> _registrasiData = [
-    {'semester': 1, 'jumlah': 'Rp 5.000.000', 'tanggal_bayar': '20 Jan 2021', 'metode': 'VA', 'lunas': true},
-    {'semester': 2, 'jumlah': 'Rp 5.000.000', 'tanggal_bayar': '25 Jul 2021', 'metode': 'VA', 'lunas': true},
-    {'semester': 3, 'jumlah': 'Rp 5.500.000', 'tanggal_bayar': '21 Jan 2022', 'metode': 'VA', 'lunas': true},
-    {'semester': 4, 'jumlah': 'Rp 5.500.000', 'tanggal_bayar': '23 Jul 2022', 'metode': 'VA', 'lunas': true},
-    {'semester': 5, 'jumlah': 'Rp 6.000.000', 'tanggal_bayar': '22 Jan 2023', 'metode': 'VA', 'lunas': true},
+    {
+      'semester': 1,
+      'jumlah': 'Rp 5.000.000',
+      'tanggal_bayar': '20 Jan 2021',
+      'metode': 'VA',
+      'lunas': true
+    },
+    {
+      'semester': 2,
+      'jumlah': 'Rp 5.000.000',
+      'tanggal_bayar': '25 Jul 2021',
+      'metode': 'VA',
+      'lunas': true
+    },
+    {
+      'semester': 3,
+      'jumlah': 'Rp 5.500.000',
+      'tanggal_bayar': '21 Jan 2022',
+      'metode': 'VA',
+      'lunas': true
+    },
+    {
+      'semester': 4,
+      'jumlah': 'Rp 5.500.000',
+      'tanggal_bayar': '23 Jul 2022',
+      'metode': 'VA',
+      'lunas': true
+    },
+    {
+      'semester': 5,
+      'jumlah': 'Rp 6.000.000',
+      'tanggal_bayar': '22 Jan 2023',
+      'metode': 'VA',
+      'lunas': true
+    },
   ];
 
   final List<Map<String, dynamic>> _kurikulumData = [
@@ -81,7 +215,12 @@ class _ProfilePageState extends State<ProfilePage> {
       'semester': 1,
       'matkul': [
         {'no': 1, 'kode': 'MK101', 'nama': 'Pengantar Informatika', 'sks': 3},
-        {'no': 2, 'kode': 'MK102', 'nama': 'Algoritma dan Pemrograman', 'sks': 4},
+        {
+          'no': 2,
+          'kode': 'MK102',
+          'nama': 'Algoritma dan Pemrograman',
+          'sks': 4
+        },
         {'no': 3, 'kode': 'MK103', 'nama': 'Matematika Dasar', 'sks': 3},
       ]
     },
@@ -96,7 +235,12 @@ class _ProfilePageState extends State<ProfilePage> {
     {
       'semester': 3,
       'matkul': [
-        {'no': 1, 'kode': 'MK301', 'nama': 'Pemrograman Berorientasi Objek', 'sks': 4},
+        {
+          'no': 1,
+          'kode': 'MK301',
+          'nama': 'Pemrograman Berorientasi Objek',
+          'sks': 4
+        },
         {'no': 2, 'kode': 'MK302', 'nama': 'Sistem Operasi', 'sks': 3},
         {'no': 3, 'kode': 'MK303', 'nama': 'Pemrograman Web', 'sks': 4},
       ]
@@ -105,8 +249,18 @@ class _ProfilePageState extends State<ProfilePage> {
       'semester': 4,
       'matkul': [
         {'no': 1, 'kode': 'MK401', 'nama': 'Kecerdasan Buatan', 'sks': 3},
-        {'no': 2, 'kode': 'MK402', 'nama': 'Analisis dan Perancangan Sistem', 'sks': 4},
-        {'no': 3, 'kode': 'MK403', 'nama': 'Interaksi Manusia dan Komputer', 'sks': 3},
+        {
+          'no': 2,
+          'kode': 'MK402',
+          'nama': 'Analisis dan Perancangan Sistem',
+          'sks': 4
+        },
+        {
+          'no': 3,
+          'kode': 'MK403',
+          'nama': 'Interaksi Manusia dan Komputer',
+          'sks': 3
+        },
       ]
     },
     {
@@ -122,7 +276,12 @@ class _ProfilePageState extends State<ProfilePage> {
       'matkul': [
         {'no': 1, 'kode': 'MK601', 'nama': 'Pengolahan Citra', 'sks': 3},
         {'no': 2, 'kode': 'MK602', 'nama': 'Kriptografi', 'sks': 3},
-        {'no': 3, 'kode': 'MK603', 'nama': 'Sistem Informasi Geografis', 'sks': 3},
+        {
+          'no': 3,
+          'kode': 'MK603',
+          'nama': 'Sistem Informasi Geografis',
+          'sks': 3
+        },
       ]
     },
     {
@@ -145,18 +304,77 @@ class _ProfilePageState extends State<ProfilePage> {
 
   // Data KRS statis yang diambil dari schedule_page
   final List<Map<String, String>> _krsData = [
-    {'subject': 'Pemrograman Mobile', 'time': '10:00 - 12:00', 'room': 'Ruang A301', 'lecturer': 'Dr. Ahmad Santoso', 'status': 'Disetujui'},
-    {'subject': 'Basis Data', 'time': '13:00 - 15:00', 'room': 'Ruang B201', 'lecturer': 'Ir. Siti Nurhaliza, M.Kom', 'status': 'Disetujui'},
-    {'subject': 'Pemrograman Web', 'time': '08:00 - 10:00', 'room': 'Lab Komputer 1', 'lecturer': 'Prof. Bambang Setiawan', 'status': 'Disetujui'},
-    {'subject': 'Algoritma Pemrograman', 'time': '13:00 - 15:00', 'room': 'Ruang C102', 'lecturer': 'Dr. Rina Wati', 'status': 'Disetujui'},
-    {'subject': 'Jaringan Komputer', 'time': '10:00 - 12:00', 'room': 'Ruang D203', 'lecturer': 'M. Rizki Pratama, S.Kom', 'status': 'Disetujui'},
-    {'subject': 'Sistem Operasi', 'time': '14:00 - 16:00', 'room': 'Ruang A405', 'lecturer': 'Dr. Andi Wijaya', 'status': 'Disetujui'},
-    {'subject': 'Kecerdasan Buatan', 'time': '09:00 - 11:00', 'room': 'Ruang B304', 'lecturer': 'Prof. Dewi Lestari', 'status': 'Disetujui'},
-    {'subject': 'Grafika Komputer', 'time': '13:00 - 15:00', 'room': 'Lab Multimedia', 'lecturer': 'Drs. Hadi Susanto', 'status': 'Disetujui'},
-    {'subject': 'Keamanan Informasi', 'time': '08:00 - 10:00', 'room': 'Ruang C201', 'lecturer': 'Dr. Lina Marlina', 'status': 'Disetujui'},
-    {'subject': 'Manajemen Proyek TI', 'time': '10:30 - 12:30', 'room': 'Ruang A101', 'lecturer': 'Ir. Budi Santoso, MBA', 'status': 'Disetujui'},
+    {
+      'subject': 'Pemrograman Mobile',
+      'time': '10:00 - 12:00',
+      'room': 'Ruang A301',
+      'lecturer': 'Dr. Ahmad Santoso',
+      'status': 'Disetujui'
+    },
+    {
+      'subject': 'Basis Data',
+      'time': '13:00 - 15:00',
+      'room': 'Ruang B201',
+      'lecturer': 'Ir. Siti Nurhaliza, M.Kom',
+      'status': 'Disetujui'
+    },
+    {
+      'subject': 'Pemrograman Web',
+      'time': '08:00 - 10:00',
+      'room': 'Lab Komputer 1',
+      'lecturer': 'Prof. Bambang Setiawan',
+      'status': 'Disetujui'
+    },
+    {
+      'subject': 'Algoritma Pemrograman',
+      'time': '13:00 - 15:00',
+      'room': 'Ruang C102',
+      'lecturer': 'Dr. Rina Wati',
+      'status': 'Disetujui'
+    },
+    {
+      'subject': 'Jaringan Komputer',
+      'time': '10:00 - 12:00',
+      'room': 'Ruang D203',
+      'lecturer': 'M. Rizki Pratama, S.Kom',
+      'status': 'Disetujui'
+    },
+    {
+      'subject': 'Sistem Operasi',
+      'time': '14:00 - 16:00',
+      'room': 'Ruang A405',
+      'lecturer': 'Dr. Andi Wijaya',
+      'status': 'Disetujui'
+    },
+    {
+      'subject': 'Kecerdasan Buatan',
+      'time': '09:00 - 11:00',
+      'room': 'Ruang B304',
+      'lecturer': 'Prof. Dewi Lestari',
+      'status': 'Disetujui'
+    },
+    {
+      'subject': 'Grafika Komputer',
+      'time': '13:00 - 15:00',
+      'room': 'Lab Multimedia',
+      'lecturer': 'Drs. Hadi Susanto',
+      'status': 'Disetujui'
+    },
+    {
+      'subject': 'Keamanan Informasi',
+      'time': '08:00 - 10:00',
+      'room': 'Ruang C201',
+      'lecturer': 'Dr. Lina Marlina',
+      'status': 'Disetujui'
+    },
+    {
+      'subject': 'Manajemen Proyek TI',
+      'time': '10:30 - 12:30',
+      'room': 'Ruang A101',
+      'lecturer': 'Ir. Budi Santoso, MBA',
+      'status': 'Disetujui'
+    },
   ];
-
 
   // Widget untuk menampilkan konten berdasarkan tombol yang dipilih
   Widget _buildContent() {
@@ -186,9 +404,9 @@ class _ProfilePageState extends State<ProfilePage> {
       'Agama': 'Islam',
       'Status Kawin': 'Belum Kawin',
       'Jenis Kelamin': 'Laki-laki',
-      'Tgl Lahir': '20 Februari 2003',
-      'Alamat': 'Jl. Kebahagiaan No. 123, Jakarta',
-      'No HP': '081234567890',
+      'Tgl Lahir': '21 Mei 2005',
+      'Alamat': 'Jl. Argasoka, Kuningan, Jawa Barat',
+      'No HP': '085889336609',
     };
 
     return Padding(
@@ -205,7 +423,9 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           const SizedBox(height: 12),
-          ...biodata.entries.map((entry) => _buildDetailRow(entry.key, entry.value)).toList(),
+          ...biodata.entries
+              .map((entry) => _buildDetailRow(entry.key, entry.value))
+              .toList(),
         ],
       ),
     );
@@ -266,7 +486,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         scrollDirection: Axis.horizontal,
                         child: DataTable(
                           columnSpacing: 12,
-                          headingRowColor: MaterialStateProperty.all(const Color(0xFFF0F4F7)),
+                          headingRowColor: MaterialStateProperty.all(
+                              const Color(0xFFF0F4F7)),
                           columns: const [
                             DataColumn(label: Text('No')),
                             DataColumn(label: Text('Kode MK')),
@@ -282,7 +503,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 DataCell(Text(matkul['kode'])),
                                 DataCell(Text(matkul['nama'])),
                                 DataCell(Text(matkul['sks'].toString())),
-                                DataCell(Text(matkul['nilai_angka'].toString())),
+                                DataCell(
+                                    Text(matkul['nilai_angka'].toString())),
                                 DataCell(Text(matkul['nilai_huruf'])),
                               ],
                             );
@@ -318,7 +540,8 @@ class _ProfilePageState extends State<ProfilePage> {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: DataTable(
-              headingRowColor: MaterialStateProperty.all(const Color(0xFFF0F4F7)),
+              headingRowColor:
+                  MaterialStateProperty.all(const Color(0xFFF0F4F7)),
               columns: const [
                 DataColumn(label: Text('Semester')),
                 DataColumn(label: Text('Jumlah')),
@@ -333,7 +556,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     DataCell(Text(reg['jumlah'])),
                     DataCell(Text(reg['tanggal_bayar'])),
                     DataCell(Text(reg['metode'])),
-                    DataCell(Icon(reg['lunas'] ? Icons.check_circle : Icons.cancel, color: reg['lunas'] ? Colors.green : Colors.red)),
+                    DataCell(Icon(
+                        reg['lunas'] ? Icons.check_circle : Icons.cancel,
+                        color: reg['lunas'] ? Colors.green : Colors.red)),
                   ],
                 );
               }).toList(),
@@ -343,7 +568,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
-  
+
   Widget _buildKurikulumSection() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -386,7 +611,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         scrollDirection: Axis.horizontal,
                         child: DataTable(
                           columnSpacing: 12,
-                          headingRowColor: MaterialStateProperty.all(const Color(0xFFF0F4F7)),
+                          headingRowColor: MaterialStateProperty.all(
+                              const Color(0xFFF0F4F7)),
                           columns: const [
                             DataColumn(label: Text('No')),
                             DataColumn(label: Text('Kode MK')),
@@ -416,7 +642,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  // Widget baru untuk menampilkan menu KRS
+  // Widget untuk menampilkan menu KRS
   Widget _buildKrsSection() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -479,7 +705,8 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   // Widget untuk kartu KRS
-  Widget _buildKrsCard(String subject, String time, String lecturer, String status) {
+  Widget _buildKrsCard(
+      String subject, String time, String lecturer, String status) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
@@ -525,7 +752,8 @@ class _ProfilePageState extends State<ProfilePage> {
               Expanded(
                 child: Text(
                   lecturer,
-                  style: const TextStyle(fontSize: 14, color: Color(0xFF2C3E50)),
+                  style:
+                      const TextStyle(fontSize: 14, color: Color(0xFF2C3E50)),
                 ),
               ),
             ],
@@ -562,7 +790,8 @@ class _ProfilePageState extends State<ProfilePage> {
             width: 120,
             child: Text(
               '$label:',
-              style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF2C3E50)),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, color: Color(0xFF2C3E50)),
             ),
           ),
           Expanded(
@@ -575,7 +804,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -606,8 +835,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   const CircleAvatar(
                     radius: 50,
-                    // backgroundImage: AssetImage('assets/images/my_profile_pic.png'),
-                    backgroundImage: AssetImage('lib/assets/images/profil.jpg'), 
+                    backgroundImage: AssetImage('lib/assets/images/profil.jpg'),
                   ),
                   const SizedBox(height: 12),
                   Text(
@@ -629,7 +857,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-            
+
             // Tombol navigasi untuk menu profil
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),

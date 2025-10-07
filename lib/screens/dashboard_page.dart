@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'notification_popup.dart'; // Import file baru
 
 class DashboardPage extends StatelessWidget {
   final String userName;
@@ -9,6 +10,50 @@ class DashboardPage extends StatelessWidget {
     required this.userName,
     required this.onQuickAccessTap,
   }) : super(key: key);
+
+  // Data dummy untuk informasi terkini
+  final List<Map<String, dynamic>> _currentInfo = const [
+    {
+      'title': 'Pembayaran UKT Semester Genap',
+      'message': 'Batas akhir pembayaran UKT pada 20 Januari 2026',
+      'icon': Icons.payment,
+      'color': Color(0xFF3498DB),
+    },
+    {
+      'title': 'Acara Webinar Nasional',
+      'message': 'Webinar "Masa Depan AI" akan diadakan pada 10 November 2025',
+      'icon': Icons.campaign,
+      'color': Color(0xFF27AE60),
+    },
+    {
+      'title': 'Penyesuaian Jadwal Kuliah',
+      'message': 'Cek kembali jadwal kuliah Anda untuk minggu ini',
+      'icon': Icons.calendar_today,
+      'color': Color(0xFFE67E22),
+    },
+  ];
+
+  // Data dummy untuk notifikasi
+  final List<Map<String, dynamic>> _notifications = const [
+    {
+      'title': 'Nilai Baru',
+      'message': 'Nilai UTS Pemrograman Web telah tersedia',
+      'icon': Icons.grade,
+      'color': Color(0xFFE67E22),
+    },
+    {
+      'title': 'Materi Baru',
+      'message': 'Materi Algoritma Pemrograman telah diupload',
+      'icon': Icons.book,
+      'color': Color(0xFF3498DB),
+    },
+    {
+      'title': 'Pengumuman',
+      'message': 'Kuliah besok dimulai pukul 09:00',
+      'icon': Icons.announcement,
+      'color': Color(0xFFE74C3C),
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +72,15 @@ class DashboardPage extends StatelessWidget {
             children: [
               IconButton(
                 icon: const Icon(Icons.notifications, color: Color(0xFFECF0F1)),
-                onPressed: () {},
+                onPressed: () {
+                  // Menampilkan pop-up notifikasi saat ikon diklik
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return NotificationPopup(notifications: _notifications);
+                    },
+                  );
+                },
               ),
               Positioned(
                 right: 8,
@@ -38,9 +91,9 @@ class DashboardPage extends StatelessWidget {
                     color: Color(0xFFE74C3C),
                     shape: BoxShape.circle,
                   ),
-                  child: const Text(
-                    '3',
-                    style: TextStyle(
+                  child: Text(
+                    '${_notifications.length}',
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
@@ -121,9 +174,9 @@ class DashboardPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
 
-                  // Notifikasi terbaru
+                  // Informasi Terkini
                   const Text(
-                    'Notifikasi Terbaru',
+                    'Informasi Terkini',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -131,82 +184,12 @@ class DashboardPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  _buildNotificationCard(
-                    'Nilai Baru',
-                    'Nilai UTS Pemrograman Web telah tersedia',
-                    Icons.grade,
-                    const Color(0xFF3498DB),
-                  ),
-                  const SizedBox(height: 10),
-                  _buildNotificationCard(
-                    'Materi Baru',
-                    'Materi Algoritma Pemrograman telah diupload',
-                    Icons.book,
-                    const Color(0xFF27AE60),
-                  ),
-                  const SizedBox(height: 10),
-                  _buildNotificationCard(
-                    'Pengumuman',
-                    'Kuliah besok dimulai pukul 09:00',
-                    Icons.announcement,
-                    const Color(0xFFE74C3C),
-                  ),
-                  const SizedBox(height: 24),
-
-                  // Quick Access
-                  const Text(
-                    'Akses Cepat',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF2C3E50),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      // Tombol Jadwal
-                      GestureDetector(
-                        onTap: () =>
-                            onQuickAccessTap(1), // Index 1 untuk Jadwal
-                        child: _buildQuickAccessButton(
-                          'Jadwal',
-                          Icons.schedule,
-                          const Color(0xFF3498DB),
-                        ),
-                      ),
-                      // Tombol Materi
-                      GestureDetector(
-                        onTap: () =>
-                            onQuickAccessTap(2), // Index 2 untuk Materi
-                        child: _buildQuickAccessButton(
-                          'Materi',
-                          Icons.book,
-                          const Color(0xFF27AE60),
-                        ),
-                      ),
-                      // Tombol Nilai
-                      GestureDetector(
-                        onTap: () => onQuickAccessTap(3), // Index 3 untuk Nilai
-                        child: _buildQuickAccessButton(
-                          'Nilai',
-                          Icons.grade,
-                          const Color(0xFFE67E22),
-                        ),
-                      ),
-                      // Tombol Profil
-                      GestureDetector(
-                        onTap: () =>
-                            onQuickAccessTap(4), // Index 4 untuk Profil
-                        child: _buildQuickAccessButton(
-                          'Profil',
-                          Icons.person,
-                          const Color(0xFF9B59B6),
-                        ),
-                      ),
-                    ],
-                  ),
+                  ..._currentInfo.map((info) => _buildInfoCard(
+                    info['title'],
+                    info['message'],
+                    info['icon'],
+                    info['color'],
+                  )),
                 ],
               ),
             ),
@@ -279,11 +262,12 @@ class DashboardPage extends StatelessWidget {
     );
   }
 
-  // Widget untuk kartu notifikasi
-  Widget _buildNotificationCard(
+  // Widget baru untuk kartu informasi terkini
+  Widget _buildInfoCard(
       String title, String message, IconData icon, Color color) {
     return Container(
       padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -332,31 +316,6 @@ class DashboardPage extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  // Widget untuk tombol akses cepat
-  Widget _buildQuickAccessButton(String label, IconData icon, Color color) {
-    return Column(
-      children: [
-        Container(
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(
-            color: color.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Icon(icon, color: color, size: 30),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 12,
-            color: Color(0xFF2C3E50),
-          ),
-        ),
-      ],
     );
   }
 }

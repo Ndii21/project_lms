@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 class MaterialDetailPage extends StatefulWidget {
   final String courseName;
   final List<String> materials;
+  final List<Map<String, dynamic>> videos;
+  final List<Map<String, dynamic>> assignments;
   final Color color;
 
   const MaterialDetailPage({
     Key? key,
     required this.courseName,
     required this.materials,
+    required this.videos,
+    required this.assignments,
     required this.color,
   }) : super(key: key);
 
@@ -31,36 +35,6 @@ class _MaterialDetailPageState extends State<MaterialDetailPage>
     _tabController.dispose();
     super.dispose();
   }
-
-  // Data dummy untuk penugasan
-  final List<Map<String, dynamic>> _assignments = const [
-    {
-      'title': 'Tugas Mandiri 1',
-      'dueDate': 'Tenggat: 25 Oktober 2025',
-      'status': 'Belum Dikumpulkan',
-    },
-    {
-      'title': 'Studi Kasus Kelompok',
-      'dueDate': 'Tenggat: 31 Oktober 2025',
-      'status': 'Belum Dikumpulkan',
-    },
-  ];
-
-  // Data dummy untuk video
-  final List<Map<String, dynamic>> _videos = const [
-    {
-      'title': 'Pengenalan Flutter Part 1',
-      'duration': '15:30',
-    },
-    {
-      'title': 'Widget Dasar Flutter',
-      'duration': '20:10',
-    },
-    {
-      'title': 'State Management Sederhana',
-      'duration': '18:45',
-    },
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -121,9 +95,9 @@ class _MaterialDetailPageState extends State<MaterialDetailPage>
   Widget _buildAssignmentsTab() {
     return ListView.builder(
       padding: const EdgeInsets.all(16),
-      itemCount: _assignments.length,
+      itemCount: widget.assignments.length,
       itemBuilder: (context, index) {
-        final assignment = _assignments[index];
+        final assignment = widget.assignments[index];
         return _buildAssignmentCard(
           assignment['title'],
           assignment['dueDate'],
@@ -136,9 +110,9 @@ class _MaterialDetailPageState extends State<MaterialDetailPage>
   Widget _buildVideosTab() {
     return ListView.builder(
       padding: const EdgeInsets.all(16),
-      itemCount: _videos.length,
+      itemCount: widget.videos.length,
       itemBuilder: (context, index) {
-        final video = _videos[index];
+        final video = widget.videos[index];
         return _buildVideoCard(
           video['title'],
           video['duration'],
@@ -306,7 +280,9 @@ class _MaterialDetailPageState extends State<MaterialDetailPage>
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color: status == 'Belum Dikumpulkan' ? Colors.red : Colors.green,
+                    color: status == 'Belum Dikumpulkan'
+                        ? Colors.red
+                        : Colors.green,
                   ),
                 ),
               ],

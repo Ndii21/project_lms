@@ -17,6 +17,15 @@ class MaterialsPage extends StatelessWidget {
         'Presentasi-Layout-Flutter.pptx',
         'Code-Sample-Navigation.zip',
       ],
+      'videos': [
+        {'title': 'Tutorial Flutter Part 1: Pengenalan', 'duration': '15:30'},
+        {'title': 'Membuat UI Simpel dengan Widget', 'duration': '20:10'},
+        {'title': 'State Management dengan Provider', 'duration': '18:45'},
+      ],
+      'assignments': [
+        {'title': 'Tugas Mandiri 1', 'dueDate': 'Tenggat: 25 Oktober 2025', 'status': 'Belum Dikumpulkan'},
+        {'title': 'Studi Kasus Kelompok', 'dueDate': 'Tenggat: 31 Oktober 2025', 'status': 'Belum Dikumpulkan'},
+      ],
     },
     {
       'name': 'Basis Data',
@@ -28,6 +37,18 @@ class MaterialsPage extends StatelessWidget {
         'Materi-3-Normalisasi.pdf',
         'Presentasi-ERD.pptx',
         'Tutorial-MySQL.docx',
+      ],
+      'videos': [
+        {'title': 'Apa Itu Database dan Relasional?', 'duration': '12:00'},
+        {'title': 'Query Dasar SQL untuk Pemula', 'duration': '22:40'},
+        {'title': 'Studi Kasus Normalisasi Database', 'duration': '25:00'},
+      ],
+      'assignments': [
+        {'title': 'Kuis 1', 'dueDate': 'Tenggat: 10 Oktober 2025', 'status': 'Belum Dikumpulkan'},
+        {'title': 'Praktik Query Join', 'dueDate': 'Tenggat: 15 Oktober 2025', 'status': 'Belum Dikumpulkan'},
+        {'title': 'Tugas Besar ERD', 'dueDate': 'Tenggat: 2 November 2025', 'status': 'Belum Dikumpulkan'},
+        {'title': 'Review Normalisasi', 'dueDate': 'Tenggat: 20 November 2025', 'status': 'Belum Dikumpulkan'},
+        {'title': 'Ujian Praktikum Akhir', 'dueDate': 'Tenggat: 5 Desember 2025', 'status': 'Belum Dikumpulkan'},
       ],
     },
     {
@@ -41,6 +62,16 @@ class MaterialsPage extends StatelessWidget {
         'Presentasi-Responsive-Design.pptx',
         'Project-Template.zip',
       ],
+      'videos': [
+        {'title': 'Membangun Landing Page dengan HTML/CSS', 'duration': '30:00'},
+        {'title': 'Dasar-Dasar JavaScript untuk Interaktivitas', 'duration': '19:55'},
+        {'title': 'Backend Sederhana dengan PHP', 'duration': '28:30'},
+      ],
+      'assignments': [
+        {'title': 'Project Landing Page', 'dueDate': 'Tenggat: 28 Oktober 2025', 'status': 'Belum Dikumpulkan'},
+        {'title': 'Implementasi JavaScript', 'dueDate': 'Tenggat: 5 November 2025', 'status': 'Belum Dikumpulkan'},
+        {'title': 'Project CRUD PHP', 'dueDate': 'Tenggat: 25 November 2025', 'status': 'Belum Dikumpulkan'},
+      ],
     },
     {
       'name': 'Algoritma Pemrograman',
@@ -52,6 +83,16 @@ class MaterialsPage extends StatelessWidget {
         'Materi-3-Sorting-Searching.pdf',
         'Presentasi-Kompleksitas-Algoritma.pptx',
         'Latihan-Soal.pdf',
+      ],
+      'videos': [
+        {'title': 'Logika Dasar dan Flowchart', 'duration': '10:15'},
+        {'title': 'Implementasi Algoritma Sorting', 'duration': '17:40'},
+        {'title': 'Mengenal Big O Notation', 'duration': '14:20'},
+      ],
+      'assignments': [
+        {'title': 'Latihan Soal 1-10', 'dueDate': 'Tenggat: 15 Oktober 2025', 'status': 'Belum Dikumpulkan'},
+        {'title': 'Latihan Soal 11-20', 'dueDate': 'Tenggat: 30 Oktober 2025', 'status': 'Belum Dikumpulkan'},
+        {'title': 'Project Akhir Algoritma', 'dueDate': 'Tenggat: 1 Desember 2025', 'status': 'Belum Dikumpulkan'},
       ],
     },
     {
@@ -65,6 +106,14 @@ class MaterialsPage extends StatelessWidget {
         'Presentasi-Protokol-Jaringan.pptx',
         'Tutorial-Cisco-Packet-Tracer.pdf',
       ],
+      'videos': [
+        {'title': 'Dasar-dasar Jaringan dan Topologi', 'duration': '16:00'},
+        {'title': 'Memahami Cara Kerja OSI Layer', 'duration': '21:30'},
+        {'title': 'Praktik Konfigurasi IP Address', 'duration': '13:00'},
+      ],
+      'assignments': [
+        {'title': 'Laporan Praktikum Jaringan 1', 'dueDate': 'Tenggat: 18 Oktober 2025', 'status': 'Belum Dikumpulkan'},
+      ],
     },
     {
       'name': 'Sistem Operasi',
@@ -76,6 +125,15 @@ class MaterialsPage extends StatelessWidget {
         'Materi-3-Memory-Management.pdf',
         'Presentasi-Scheduling.pptx',
         'Lab-Linux-Commands.pdf',
+      ],
+      'videos': [
+        {'title': 'Pengantar ke Sistem Operasi Modern', 'duration': '11:10'},
+        {'title': 'Manajemen Proses pada Linux', 'duration': '19:00'},
+        {'title': 'Cara Kerja Memory Management', 'duration': '16:50'},
+      ],
+      'assignments': [
+        {'title': 'Tugas Kelompok OS', 'dueDate': 'Tenggat: 20 Oktober 2025', 'status': 'Belum Dikumpulkan'},
+        {'title': 'Laporan Studi Kasus Memory Management', 'dueDate': 'Tenggat: 10 November 2025', 'status': 'Belum Dikumpulkan'},
       ],
     },
   ];
@@ -103,6 +161,8 @@ class MaterialsPage extends StatelessWidget {
             course['icon'],
             course['color'],
             course['materials'],
+            course['videos'],
+            course['assignments'], 
           );
         },
       ),
@@ -116,8 +176,10 @@ class MaterialsPage extends StatelessWidget {
     IconData icon,
     Color color,
     List<String> materials,
+    List<Map<String, dynamic>> videos, // Terima data videos
+    List<Map<String, dynamic>> assignments, // Terima data assignments
   ) {
-    return MouseRegion( // Tambahin MouseRegion di sini
+    return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
@@ -128,6 +190,8 @@ class MaterialsPage extends StatelessWidget {
               builder: (context) => MaterialDetailPage(
                 courseName: courseName,
                 materials: materials,
+                videos: videos,
+                assignments: assignments, // Kirim data assignments ke halaman detail
                 color: color,
               ),
             ),

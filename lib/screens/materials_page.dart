@@ -16,6 +16,7 @@ class MaterialsPage extends StatelessWidget {
         'Materi-3-State-Management.pdf',
         'Presentasi-Layout-Flutter.pptx',
         'Code-Sample-Navigation.zip',
+        'Materi-4-HTTP-Requests.pdf',
       ],
     },
     {

@@ -4,7 +4,7 @@ import 'material_detail_page.dart';
 class MaterialsPage extends StatelessWidget {
   const MaterialsPage({Key? key}) : super(key: key);
 
-  // Data mata kuliah statis (Hanya Semester 5 yang sedang aktif)
+  // Data mata kuliah
   final List<Map<String, dynamic>> _courses = const [
     {
       'name': 'Pemrograman perangkat bergerak',
@@ -242,8 +242,8 @@ class MaterialsPage extends StatelessWidget {
     IconData icon,
     Color color,
     List<String> materials,
-    List<Map<String, dynamic>> videos, // Terima data videos
-    List<Map<String, dynamic>> assignments, // Terima data assignments
+    List<Map<String, dynamic>> videos,
+    List<Map<String, dynamic>> assignments,
   ) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -257,8 +257,7 @@ class MaterialsPage extends StatelessWidget {
                 courseName: courseName,
                 materials: materials,
                 videos: videos,
-                assignments:
-                    assignments, // Kirim data assignments ke halaman detail
+                assignments: assignments,
                 color: color,
               ),
             ),

@@ -4,136 +4,202 @@ import 'material_detail_page.dart';
 class MaterialsPage extends StatelessWidget {
   const MaterialsPage({Key? key}) : super(key: key);
 
-  // Data mata kuliah statis
+  // Data mata kuliah statis (Hanya Semester 5 yang sedang aktif)
   final List<Map<String, dynamic>> _courses = const [
     {
-      'name': 'Pemrograman Mobile',
+      'name': 'Pemrograman perangkat bergerak',
       'icon': Icons.phone_android,
-      'color': Color(0xFF3498DB),
+      'color': Color(0xFF3498DB), // Blue
       'materials': [
-        'Materi-1-Pengenalan-Flutter.pdf',
-        'Materi-2-Widget-Dasar.pdf',
-        'Materi-3-State-Management.pdf',
-        'Presentasi-Layout-Flutter.pptx',
-        'Code-Sample-Navigation.zip',
+        'Materi-1-Pengenalan-Flutter-Dart.pdf',
+        'Materi-2-Widgets-Navigation.pdf',
+        'Presentasi-State-Management.pptx',
+        'Tugas-Project-UI-Sederhana.zip',
       ],
       'videos': [
-        {'title': 'Tutorial Flutter Part 1: Pengenalan', 'duration': '15:30'},
-        {'title': 'Membuat UI Simpel dengan Widget', 'duration': '20:10'},
-        {'title': 'State Management dengan Provider', 'duration': '18:45'},
+        {
+          'title': 'Pengenalan Native vs Hybrid Mobile Dev',
+          'duration': '15:30'
+        },
+        {'title': 'Dasar-dasar Bahasa Dart dan Flutter', 'duration': '20:10'},
       ],
       'assignments': [
-        {'title': 'Tugas Mandiri 1', 'dueDate': 'Tenggat: 25 Oktober 2025', 'status': 'Belum Dikumpulkan'},
-        {'title': 'Studi Kasus Kelompok', 'dueDate': 'Tenggat: 31 Oktober 2025', 'status': 'Belum Dikumpulkan'},
+        {
+          'title': 'Tugas Mandiri 1: Desain UI',
+          'dueDate': 'Tenggat: 25 Okt 2025',
+          'status': 'Belum Dikumpulkan'
+        },
+        {
+          'title': 'Project Kelompok: Aplikasi CRUD',
+          'dueDate': 'Tenggat: 30 Nov 2025',
+          'status': 'Belum Dikumpulkan'
+        },
       ],
     },
     {
-      'name': 'Basis Data',
-      'icon': Icons.storage,
-      'color': Color(0xFF27AE60),
+      'name': 'Perencanaan strategi sistem informasi',
+      'icon': Icons.lightbulb,
+      'color': Color(0xFF27AE60), // Green
       'materials': [
-        'Materi-1-Pengenalan-Database.pdf',
-        'Materi-2-SQL-Dasar.pdf',
-        'Materi-3-Normalisasi.pdf',
-        'Presentasi-ERD.pptx',
-        'Tutorial-MySQL.docx',
+        'Materi-1-Konsep-Dasar-PSIS.pdf',
+        'Materi-2-Metodologi-PSIS.pdf',
+        'Studi-Kasus-PSIS-Perusahaan-X.docx',
       ],
       'videos': [
-        {'title': 'Apa Itu Database dan Relasional?', 'duration': '12:00'},
-        {'title': 'Query Dasar SQL untuk Pemula', 'duration': '22:40'},
-        {'title': 'Studi Kasus Normalisasi Database', 'duration': '25:00'},
+        {'title': 'Model-model Perencanaan Strategis SI', 'duration': '12:00'},
+        {'title': 'Mengukur Value IT untuk Bisnis', 'duration': '18:15'},
       ],
       'assignments': [
-        {'title': 'Kuis 1', 'dueDate': 'Tenggat: 10 Oktober 2025', 'status': 'Belum Dikumpulkan'},
-        {'title': 'Praktik Query Join', 'dueDate': 'Tenggat: 15 Oktober 2025', 'status': 'Belum Dikumpulkan'},
-        {'title': 'Tugas Besar ERD', 'dueDate': 'Tenggat: 2 November 2025', 'status': 'Belum Dikumpulkan'},
-        {'title': 'Review Normalisasi', 'dueDate': 'Tenggat: 20 November 2025', 'status': 'Belum Dikumpulkan'},
-        {'title': 'Ujian Praktikum Akhir', 'dueDate': 'Tenggat: 5 Desember 2025', 'status': 'Belum Dikumpulkan'},
+        {
+          'title': 'Analisis Rencana Strategi SI',
+          'dueDate': 'Tenggat: 15 Nov 2025',
+          'status': 'Belum Dikumpulkan'
+        },
       ],
     },
     {
-      'name': 'Pemrograman Web',
-      'icon': Icons.web,
-      'color': Color(0xFFE67E22),
+      'name': 'Sistem enterprise resource planning',
+      'icon': Icons.business,
+      'color': Color(0xFFE67E22), // Orange
       'materials': [
-        'Materi-1-HTML-CSS.pdf',
-        'Materi-2-JavaScript.pdf',
-        'Materi-3-PHP-MySQL.pdf',
-        'Presentasi-Responsive-Design.pptx',
-        'Project-Template.zip',
+        'Materi-1-Pengenalan-ERP.pdf',
+        'Presentasi-Modul-SAP.pptx',
+        'Studi-Kasus-Implementasi-ERP.pdf',
       ],
       'videos': [
-        {'title': 'Membangun Landing Page dengan HTML/CSS', 'duration': '30:00'},
-        {'title': 'Dasar-Dasar JavaScript untuk Interaktivitas', 'duration': '19:55'},
-        {'title': 'Backend Sederhana dengan PHP', 'duration': '28:30'},
+        {
+          'title': 'Mengapa Implementasi ERP Sering Gagal?',
+          'duration': '19:00'
+        },
+        {'title': 'Modul Inti dan Integrasi Sistem ERP', 'duration': '25:00'},
       ],
       'assignments': [
-        {'title': 'Project Landing Page', 'dueDate': 'Tenggat: 28 Oktober 2025', 'status': 'Belum Dikumpulkan'},
-        {'title': 'Implementasi JavaScript', 'dueDate': 'Tenggat: 5 November 2025', 'status': 'Belum Dikumpulkan'},
-        {'title': 'Project CRUD PHP', 'dueDate': 'Tenggat: 25 November 2025', 'status': 'Belum Dikumpulkan'},
+        {
+          'title': 'Laporan Analisis Modul ERP',
+          'dueDate': 'Tenggat: 20 Nov 2025',
+          'status': 'Belum Dikumpulkan'
+        },
       ],
     },
     {
-      'name': 'Algoritma Pemrograman',
-      'icon': Icons.code,
-      'color': Color(0xFF9B59B6),
+      'name': 'Metodologi penelitian',
+      'icon': Icons.science,
+      'color': Color(0xFF9B59B6), // Purple
       'materials': [
-        'Materi-1-Pengenalan-Algoritma.pdf',
-        'Materi-2-Struktur-Data.pdf',
-        'Materi-3-Sorting-Searching.pdf',
-        'Presentasi-Kompleksitas-Algoritma.pptx',
-        'Latihan-Soal.pdf',
+        'Materi-1-Jenis-Metode-Penelitian.pdf',
+        'Materi-2-Cara-Menyusun-Proposal.pdf',
+        'Template-Proposal-Penelitian.docx',
       ],
       'videos': [
-        {'title': 'Logika Dasar dan Flowchart', 'duration': '10:15'},
-        {'title': 'Implementasi Algoritma Sorting', 'duration': '17:40'},
-        {'title': 'Mengenal Big O Notation', 'duration': '14:20'},
+        {
+          'title': 'Merumuskan Masalah dan Hipotesis Penelitian',
+          'duration': '17:40'
+        },
+        {'title': 'Teknik Pengambilan Sampel Kuantitatif', 'duration': '14:20'},
       ],
       'assignments': [
-        {'title': 'Latihan Soal 1-10', 'dueDate': 'Tenggat: 15 Oktober 2025', 'status': 'Belum Dikumpulkan'},
-        {'title': 'Latihan Soal 11-20', 'dueDate': 'Tenggat: 30 Oktober 2025', 'status': 'Belum Dikumpulkan'},
-        {'title': 'Project Akhir Algoritma', 'dueDate': 'Tenggat: 1 Desember 2025', 'status': 'Belum Dikumpulkan'},
+        {
+          'title': 'Draft Proposal Penelitian',
+          'dueDate': 'Tenggat: 1 Des 2025',
+          'status': 'Belum Dikumpulkan'
+        },
       ],
     },
     {
-      'name': 'Jaringan Komputer',
-      'icon': Icons.router,
-      'color': Color(0xFFE74C3C),
+      'name': 'Testing dan implementasi sistem',
+      'icon': Icons.checklist,
+      'color': Color(0xFFE74C3C), // Red
       'materials': [
-        'Materi-1-Pengenalan-Jaringan.pdf',
-        'Materi-2-OSI-Layer.pdf',
-        'Materi-3-TCP-IP.pdf',
-        'Presentasi-Protokol-Jaringan.pptx',
-        'Tutorial-Cisco-Packet-Tracer.pdf',
+        'Materi-1-Testing-Fungsional.pdf',
+        'Materi-2-UAT-dan-Implementasi.pdf',
+        'Checklist-Uji-Coba.pdf',
       ],
       'videos': [
-        {'title': 'Dasar-dasar Jaringan dan Topologi', 'duration': '16:00'},
-        {'title': 'Memahami Cara Kerja OSI Layer', 'duration': '21:30'},
-        {'title': 'Praktik Konfigurasi IP Address', 'duration': '13:00'},
+        {
+          'title': 'Jenis-jenis Testing (Unit, Integrasi, System)',
+          'duration': '16:00'
+        },
+        {
+          'title': 'Strategi Go-Live & Post-Implementation Review',
+          'duration': '18:45'
+        },
       ],
       'assignments': [
-        {'title': 'Laporan Praktikum Jaringan 1', 'dueDate': 'Tenggat: 18 Oktober 2025', 'status': 'Belum Dikumpulkan'},
+        {
+          'title': 'Laporan Uji Coba Black Box',
+          'dueDate': 'Tenggat: 28 Okt 2025',
+          'status': 'Belum Dikumpulkan'
+        },
       ],
     },
     {
-      'name': 'Sistem Operasi',
-      'icon': Icons.computer,
-      'color': Color(0xFF34495E),
+      'name': 'Riset operasi',
+      'icon': Icons.calculate,
+      'color': Color(0xFF34495E), // Dark Blue/Grey
       'materials': [
-        'Materi-1-Pengenalan-OS.pdf',
-        'Materi-2-Process-Management.pdf',
-        'Materi-3-Memory-Management.pdf',
-        'Presentasi-Scheduling.pptx',
-        'Lab-Linux-Commands.pdf',
+        'Materi-1-Linear-Programming.pdf',
+        'Materi-2-Metode-Simplex.pdf',
+        'Latihan-Soal-Riset-Operasi.pdf',
       ],
       'videos': [
-        {'title': 'Pengantar ke Sistem Operasi Modern', 'duration': '11:10'},
-        {'title': 'Manajemen Proses pada Linux', 'duration': '19:00'},
-        {'title': 'Cara Kerja Memory Management', 'duration': '16:50'},
+        {'title': 'Metode Transportasi dan Penugasan', 'duration': '11:10'},
+        {'title': 'Pengantar Teori Antrian', 'duration': '19:00'},
       ],
       'assignments': [
-        {'title': 'Tugas Kelompok OS', 'dueDate': 'Tenggat: 20 Oktober 2025', 'status': 'Belum Dikumpulkan'},
-        {'title': 'Laporan Studi Kasus Memory Management', 'dueDate': 'Tenggat: 10 November 2025', 'status': 'Belum Dikumpulkan'},
+        {
+          'title': 'Latihan Soal 1-5',
+          'dueDate': 'Tenggat: 10 Nov 2025',
+          'status': 'Belum Dikumpulkan'
+        },
+      ],
+    },
+    {
+      'name': 'Etika profesi',
+      'icon': Icons.gavel,
+      'color': Color(0xFF1ABC9C), // Teal/Turquoise
+      'materials': [
+        'Materi-1-Kode-Etik-TI.pdf',
+        'Materi-2-Isu-Privasi-dan-HAKI.pdf',
+      ],
+      'videos': [
+        {
+          'title': 'Etika Digital dan Perlindungan Data Pribadi',
+          'duration': '14:50'
+        },
+        {
+          'title': 'Tanggung Jawab Profesional di Bidang TI',
+          'duration': '13:00'
+        },
+      ],
+      'assignments': [
+        {
+          'title': 'Studi Kasus Etika Profesi',
+          'dueDate': 'Tenggat: 5 Nov 2025',
+          'status': 'Belum Dikumpulkan'
+        },
+      ],
+    },
+    {
+      'name': 'Magang',
+      'icon': Icons.work,
+      'color': Color(0xFFF1C40F), // Yellow/Gold
+      'materials': [
+        'Panduan-Pelaksanaan-Magang.pdf',
+        'Template-Laporan-Mingguan.docx',
+      ],
+      'videos': [
+        {'title': 'Cara Menyusun Logbook Harian Magang', 'duration': '08:00'},
+        {
+          'title': 'Tips Beradaptasi di Lingkungan Kerja IT',
+          'duration': '10:30'
+        },
+      ],
+      'assignments': [
+        {
+          'title': 'Laporan Akhir Magang',
+          'dueDate': 'Tenggat: 30 Des 2025',
+          'status': 'Belum Dikumpulkan'
+        },
       ],
     },
   ];
@@ -162,7 +228,7 @@ class MaterialsPage extends StatelessWidget {
             course['color'],
             course['materials'],
             course['videos'],
-            course['assignments'], 
+            course['assignments'],
           );
         },
       ),
@@ -191,7 +257,8 @@ class MaterialsPage extends StatelessWidget {
                 courseName: courseName,
                 materials: materials,
                 videos: videos,
-                assignments: assignments, // Kirim data assignments ke halaman detail
+                assignments:
+                    assignments, // Kirim data assignments ke halaman detail
                 color: color,
               ),
             ),

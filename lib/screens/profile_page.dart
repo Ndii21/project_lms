@@ -18,161 +18,163 @@ class _ProfilePageState extends State<ProfilePage> {
   // Index untuk mengontrol halaman mana yang aktif
   int _selectedIndex = 0;
 
-  // Data dummy untuk masing-masing halaman
-  final List<Map<String, dynamic>> _akademikData = [
+  // Helper untuk menghasilkan mock data mata kuliah dengan nilai
+  List<Map<String, dynamic>> _generateSemesterCourses(
+      int semester, List<String> subjects) {
+    // Dummy grading logic (e.g., higher IP for lower semesters)
+    int baseScore = 90 - (semester - 1) * 2;
+    String baseGrade = (semester < 3) ? 'A' : 'A-';
+
+    return List.generate(subjects.length, (i) {
+      // Simple logic to assign mock codes, SKS, and minor grade variations
+      int sks;
+      if (subjects[i].toLowerCase().contains('inggris') ||
+          subjects[i].toLowerCase().contains('pancasila') ||
+          subjects[i].toLowerCase().contains('kewarganegaraan') ||
+          subjects[i].toLowerCase().contains('agama') ||
+          subjects[i].toLowerCase().contains('etika') ||
+          subjects[i].toLowerCase().contains('hukum')) {
+        sks = 2; // Reduce SKS for non-core/general subjects
+      } else if (subjects[i].toLowerCase().contains('pemrograman') ||
+          subjects[i].toLowerCase().contains('basis data') ||
+          subjects[i].toLowerCase().contains('struktur data') ||
+          subjects[i].toLowerCase().contains('rekayasa') ||
+          subjects[i].toLowerCase().contains('jaringan') ||
+          subjects[i].toLowerCase().contains('testing')) {
+        sks = 4; // Higher SKS for major courses
+      } else if (subjects[i].toLowerCase().contains('skripsi')) {
+        sks = 6;
+      } else {
+        sks = 3;
+      }
+      if (subjects[i].toLowerCase().contains('magang') ||
+          subjects[i].toLowerCase().contains('kkn')) sks = 3;
+
+      int score = baseScore + (i % 3);
+      String grade = baseGrade;
+      if (score >= 90)
+        grade = 'A';
+      else if (score >= 85)
+        grade = 'A-';
+      else if (score >= 80) grade = 'B+';
+
+      return {
+        'no': i + 1,
+        'kode': 'MK${semester}0${i + 1}',
+        'nama': subjects[i],
+        'sks': sks,
+        'nilai_angka': score,
+        'nilai_huruf': grade,
+      };
+    });
+  }
+
+  // --- Mata Kuliah Rill Berdasarkan Input Pengguna ---
+  final Map<int, List<String>> _allCourseData = const {
+    1: [
+      'Kepemimpinan & keterampilan interpersonal',
+      'Aljabar linear',
+      'Pengantar teknologi informasi',
+      'Pancasila',
+      'Bahasa inggris umum',
+      'Pengenalan algoritma dan pemrograman',
+      'Pendidikan agama',
+      'Budaya bangsa',
+    ],
+    2: [
+      'E-business',
+      'Bahasa inggris untuk presentasi bisnis',
+      'Bahasa indonesia',
+      'Pengenalan basis data',
+      'Konsep sistem informasi',
+      'Kewarganegaraan',
+      'Algoritma dan struktur data',
+    ],
+    3: [
+      'Basis data lanjut',
+      'Sistem informasi akuntansi dan keuangan',
+      'Statistika & probabilitas',
+      'Sistem operasi',
+      'Fisika dasar',
+      'Organisasi dan arsitektur komputer',
+      'Analisis proses bisnis',
+    ],
+    4: [
+      'Rekayasa perangkat lunak',
+      'Data warehouse',
+      'Pemrograman berbasis web',
+      'Manajemen sistem informasi',
+      'Jaringan dan keamanan sistem',
+      'Pemrograman berorientasi objek',
+      'Analisa dan perancangan sistem informasi',
+    ],
+    5: [
+      'Pemrograman perangkat bergerak',
+      'Perencanaan strategi sistem informasi',
+      'Sistem enterprise resource planning',
+      'Metodologi penelitian',
+      'Testing dan implementasi sistem',
+      'Riset operasi',
+      'Etika profesi',
+      'Magang',
+    ],
+    6: [
+      'Sistem cerdas',
+      'Interaksi manusia dan komputer',
+      'Technopreneurship',
+      'Teknik data mining',
+      'Sistem pendukung keputusan',
+      'Computing assisted audit tools & techniques',
+      'Information system audit',
+      'Digital and new media',
+      'E-business design',
+      'Developing business applications',
+      'Web services applications',
+      'Komputasi awan dan blockchain',
+      'Karya tulis ilmiah',
+      'KKN',
+    ],
+    7: [
+      'Pemrograman animasi dan multimedia',
+      'Hukum paten dan merk',
+      'Kapita selekta ilmu komputer',
+      'Text mining',
+      'Business web solution',
+      'Analisis big data',
+      'IT in financial market',
+      'IT governance',
+      'Integrasi aplikasi korporasi',
+      'Teknologi opensource dan terbaru',
+    ],
+    8: ['Skripsi'],
+  };
+
+  // 1. Data Akademik (Semester 1-4 Complete, S5 Current)
+  late final List<Map<String, dynamic>> _akademikData = [
     {
       'semester': 1,
-      'ip': 3.85,
-      'matkul': [
-        {
-          'no': 1,
-          'kode': 'MK101',
-          'nama': 'Pengantar Informatika',
-          'sks': 3,
-          'nilai_angka': 90,
-          'nilai_huruf': 'A'
-        },
-        {
-          'no': 2,
-          'kode': 'MK102',
-          'nama': 'Algoritma dan Pemrograman',
-          'sks': 4,
-          'nilai_angka': 85,
-          'nilai_huruf': 'A-'
-        },
-        {
-          'no': 3,
-          'kode': 'MK103',
-          'nama': 'Matematika Dasar',
-          'sks': 3,
-          'nilai_angka': 88,
-          'nilai_huruf': 'A'
-        },
-      ]
+      'ip': 3.88,
+      'matkul': _generateSemesterCourses(1, _allCourseData[1]!),
     },
     {
       'semester': 2,
-      'ip': 3.70,
-      'matkul': [
-        {
-          'no': 1,
-          'kode': 'MK201',
-          'nama': 'Struktur Data',
-          'sks': 4,
-          'nilai_angka': 80,
-          'nilai_huruf': 'B+'
-        },
-        {
-          'no': 2,
-          'kode': 'MK202',
-          'nama': 'Basis Data',
-          'sks': 4,
-          'nilai_angka': 87,
-          'nilai_huruf': 'A'
-        },
-        {
-          'no': 3,
-          'kode': 'MK203',
-          'nama': 'Jaringan Komputer',
-          'sks': 3,
-          'nilai_angka': 82,
-          'nilai_huruf': 'B+'
-        },
-      ]
+      'ip': 3.75,
+      'matkul': _generateSemesterCourses(2, _allCourseData[2]!),
     },
     {
       'semester': 3,
-      'ip': 3.92,
-      'matkul': [
-        {
-          'no': 1,
-          'kode': 'MK301',
-          'nama': 'Pemrograman Berorientasi Objek',
-          'sks': 4,
-          'nilai_angka': 95,
-          'nilai_huruf': 'A'
-        },
-        {
-          'no': 2,
-          'kode': 'MK302',
-          'nama': 'Sistem Operasi',
-          'sks': 3,
-          'nilai_angka': 89,
-          'nilai_huruf': 'A-'
-        },
-        {
-          'no': 3,
-          'kode': 'MK303',
-          'nama': 'Pemrograman Web',
-          'sks': 4,
-          'nilai_angka': 91,
-          'nilai_huruf': 'A'
-        },
-      ]
+      'ip': 3.80,
+      'matkul': _generateSemesterCourses(3, _allCourseData[3]!),
     },
     {
       'semester': 4,
-      'ip': 3.65,
-      'matkul': [
-        {
-          'no': 1,
-          'kode': 'MK401',
-          'nama': 'Kecerdasan Buatan',
-          'sks': 3,
-          'nilai_angka': 80,
-          'nilai_huruf': 'B+'
-        },
-        {
-          'no': 2,
-          'kode': 'MK402',
-          'nama': 'Analisis dan Perancangan Sistem',
-          'sks': 4,
-          'nilai_angka': 85,
-          'nilai_huruf': 'A-'
-        },
-        {
-          'no': 3,
-          'kode': 'MK403',
-          'nama': 'Interaksi Manusia dan Komputer',
-          'sks': 3,
-          'nilai_angka': 78,
-          'nilai_huruf': 'B'
-        },
-      ]
-    },
-    {
-      'semester': 5,
-      'ip': 3.80,
-      'matkul': [
-        {
-          'no': 1,
-          'kode': 'MK501',
-          'nama': 'Pemrograman Mobile',
-          'sks': 4,
-          'nilai_angka': 88,
-          'nilai_huruf': 'A'
-        },
-        {
-          'no': 2,
-          'kode': 'MK502',
-          'nama': 'Data Mining',
-          'sks': 3,
-          'nilai_angka': 85,
-          'nilai_huruf': 'A-'
-        },
-        {
-          'no': 3,
-          'kode': 'MK503',
-          'nama': 'Manajemen Proyek TI',
-          'sks': 3,
-          'nilai_angka': 83,
-          'nilai_huruf': 'B+'
-        },
-      ]
+      'ip': 3.72,
+      'matkul': _generateSemesterCourses(4, _allCourseData[4]!),
     },
   ];
 
-  final List<Map<String, dynamic>> _registrasiData = [
+  // 2. Data Registrasi (Semester 1-5 Complete)
+  final List<Map<String, dynamic>> _registrasiData = const [
     {
       'semester': 1,
       'jumlah': 'Rp 5.000.000',
@@ -210,174 +212,130 @@ class _ProfilePageState extends State<ProfilePage> {
     },
   ];
 
-  final List<Map<String, dynamic>> _kurikulumData = [
-    {
-      'semester': 1,
-      'matkul': [
-        {'no': 1, 'kode': 'MK101', 'nama': 'Pengantar Informatika', 'sks': 3},
-        {
-          'no': 2,
-          'kode': 'MK102',
-          'nama': 'Algoritma dan Pemrograman',
-          'sks': 4
-        },
-        {'no': 3, 'kode': 'MK103', 'nama': 'Matematika Dasar', 'sks': 3},
-      ]
-    },
-    {
-      'semester': 2,
-      'matkul': [
-        {'no': 1, 'kode': 'MK201', 'nama': 'Struktur Data', 'sks': 4},
-        {'no': 2, 'kode': 'MK202', 'nama': 'Basis Data', 'sks': 4},
-        {'no': 3, 'kode': 'MK203', 'nama': 'Jaringan Komputer', 'sks': 3},
-      ]
-    },
-    {
-      'semester': 3,
-      'matkul': [
-        {
-          'no': 1,
-          'kode': 'MK301',
-          'nama': 'Pemrograman Berorientasi Objek',
-          'sks': 4
-        },
-        {'no': 2, 'kode': 'MK302', 'nama': 'Sistem Operasi', 'sks': 3},
-        {'no': 3, 'kode': 'MK303', 'nama': 'Pemrograman Web', 'sks': 4},
-      ]
-    },
-    {
-      'semester': 4,
-      'matkul': [
-        {'no': 1, 'kode': 'MK401', 'nama': 'Kecerdasan Buatan', 'sks': 3},
-        {
-          'no': 2,
-          'kode': 'MK402',
-          'nama': 'Analisis dan Perancangan Sistem',
-          'sks': 4
-        },
-        {
-          'no': 3,
-          'kode': 'MK403',
-          'nama': 'Interaksi Manusia dan Komputer',
-          'sks': 3
-        },
-      ]
-    },
-    {
-      'semester': 5,
-      'matkul': [
-        {'no': 1, 'kode': 'MK501', 'nama': 'Pemrograman Mobile', 'sks': 4},
-        {'no': 2, 'kode': 'MK502', 'nama': 'Data Mining', 'sks': 3},
-        {'no': 3, 'kode': 'MK503', 'nama': 'Manajemen Proyek TI', 'sks': 3},
-      ]
-    },
-    {
-      'semester': 6,
-      'matkul': [
-        {'no': 1, 'kode': 'MK601', 'nama': 'Pengolahan Citra', 'sks': 3},
-        {'no': 2, 'kode': 'MK602', 'nama': 'Kriptografi', 'sks': 3},
-        {
-          'no': 3,
-          'kode': 'MK603',
-          'nama': 'Sistem Informasi Geografis',
-          'sks': 3
-        },
-      ]
-    },
-    {
-      'semester': 7,
-      'matkul': [
-        {'no': 1, 'kode': 'MK701', 'nama': 'Kerja Praktek', 'sks': 2},
-        {'no': 2, 'kode': 'MK702', 'nama': 'Skripsi', 'sks': 4},
-        {'no': 3, 'kode': 'MK703', 'nama': 'Etika Profesi TI', 'sks': 2},
-      ]
-    },
-    {
-      'semester': 8,
-      'matkul': [
-        {'no': 1, 'kode': 'MK801', 'nama': 'Seminar Proposal', 'sks': 2},
-        {'no': 2, 'kode': 'MK802', 'nama': 'Tugas Akhir', 'sks': 6},
-        {'no': 3, 'kode': 'MK803', 'nama': 'Kewirausahaan', 'sks': 3},
-      ]
-    },
+  // 3. Data Kurikulum (Semester 1-8 Full)
+  late final List<Map<String, dynamic>> _kurikulumData = [
+    for (int s = 1; s <= 8; s++)
+      {
+        'semester': s,
+        'matkul': [
+          for (int i = 0; i < _allCourseData[s]!.length; i++)
+            {
+              'no': i + 1,
+              'kode': 'MK${s}0${i + 1}',
+              'nama': _allCourseData[s]![i],
+              // Recalculate SKS here (simplified, to avoid calling _generateSemesterCourses multiple times)
+              'sks': [6].contains(s)
+                  ? 3
+                  : (s == 8
+                      ? 6
+                      : (_allCourseData[s]![i]
+                                  .toLowerCase()
+                                  .contains('inggris') ||
+                              _allCourseData[s]![i]
+                                  .toLowerCase()
+                                  .contains('pancasila') ||
+                              _allCourseData[s]![i]
+                                  .toLowerCase()
+                                  .contains('kewarganegaraan') ||
+                              _allCourseData[s]![i]
+                                  .toLowerCase()
+                                  .contains('agama') ||
+                              _allCourseData[s]![i]
+                                  .toLowerCase()
+                                  .contains('etika') ||
+                              _allCourseData[s]![i]
+                                  .toLowerCase()
+                                  .contains('hukum')
+                          ? 2
+                          : (_allCourseData[s]![i]
+                                      .toLowerCase()
+                                      .contains('pemrograman') ||
+                                  _allCourseData[s]![i]
+                                      .toLowerCase()
+                                      .contains('basis data') ||
+                                  _allCourseData[s]![i]
+                                      .toLowerCase()
+                                      .contains('struktur data') ||
+                                  _allCourseData[s]![i]
+                                      .toLowerCase()
+                                      .contains('rekayasa') ||
+                                  _allCourseData[s]![i]
+                                      .toLowerCase()
+                                      .contains('jaringan') ||
+                                  _allCourseData[s]![i]
+                                      .toLowerCase()
+                                      .contains('testing')
+                              ? 4
+                              : 3))),
+            },
+        ],
+      },
   ];
 
-  // Data KRS statis yang diambil dari schedule_page
-  final List<Map<String, String>> _krsData = [
+  // 4. Data KRS (Semester 5 Active)
+  final List<Map<String, String>> _krsData = const [
+    // Courses for Semester 5
     {
-      'subject': 'Pemrograman Mobile',
+      'subject': 'Pemrograman perangkat bergerak',
       'time': '10:00 - 12:00',
-      'room': 'Ruang A301',
-      'lecturer': 'Dr. Ahmad Santoso',
+      'room': 'Lab Komputer 2',
+      'lecturer': 'Dr. Sarah Setiadi',
       'status': 'Disetujui'
     },
     {
-      'subject': 'Basis Data',
-      'time': '13:00 - 15:00',
-      'room': 'Ruang B201',
-      'lecturer': 'Ir. Siti Nurhaliza, M.Kom',
-      'status': 'Disetujui'
-    },
-    {
-      'subject': 'Pemrograman Web',
+      'subject': 'Perencanaan strategi sistem informasi',
       'time': '08:00 - 10:00',
-      'room': 'Lab Komputer 1',
-      'lecturer': 'Prof. Bambang Setiawan',
+      'room': 'Ruang C401',
+      'lecturer': 'Ir. Budi Santoso, MBA',
       'status': 'Disetujui'
     },
     {
-      'subject': 'Algoritma Pemrograman',
+      'subject': 'Sistem enterprise resource planning',
       'time': '13:00 - 15:00',
-      'room': 'Ruang C102',
-      'lecturer': 'Dr. Rina Wati',
-      'status': 'Disetujui'
-    },
-    {
-      'subject': 'Jaringan Komputer',
-      'time': '10:00 - 12:00',
-      'room': 'Ruang D203',
+      'room': 'Ruang B301',
       'lecturer': 'M. Rizki Pratama, S.Kom',
       'status': 'Disetujui'
     },
     {
-      'subject': 'Sistem Operasi',
-      'time': '14:00 - 16:00',
-      'room': 'Ruang A405',
-      'lecturer': 'Dr. Andi Wijaya',
+      'subject': 'Metodologi penelitian',
+      'time': '15:00 - 17:00',
+      'room': 'Ruang A205',
+      'lecturer': 'Prof. Dr. Andi Wijaya',
       'status': 'Disetujui'
     },
     {
-      'subject': 'Kecerdasan Buatan',
+      'subject': 'Testing dan implementasi sistem',
       'time': '09:00 - 11:00',
-      'room': 'Ruang B304',
-      'lecturer': 'Prof. Dewi Lestari',
+      'room': 'Lab Komputer 1',
+      'lecturer': 'Dr. Rina Wati',
       'status': 'Disetujui'
     },
     {
-      'subject': 'Grafika Komputer',
-      'time': '13:00 - 15:00',
-      'room': 'Lab Multimedia',
-      'lecturer': 'Drs. Hadi Susanto',
-      'status': 'Disetujui'
-    },
-    {
-      'subject': 'Keamanan Informasi',
-      'time': '08:00 - 10:00',
-      'room': 'Ruang C201',
+      'subject': 'Riset operasi',
+      'time': '12:00 - 14:00',
+      'room': 'Ruang D203',
       'lecturer': 'Dr. Lina Marlina',
       'status': 'Disetujui'
     },
     {
-      'subject': 'Manajemen Proyek TI',
+      'subject': 'Etika profesi',
       'time': '10:30 - 12:30',
-      'room': 'Ruang A101',
-      'lecturer': 'Ir. Budi Santoso, MBA',
+      'room': 'Ruang C201',
+      'lecturer': 'Drs. Hadi Susanto',
+      'status': 'Disetujui'
+    },
+    {
+      'subject': 'Magang',
+      'time': '08:00 - 16:00',
+      'room': 'Kantor',
+      'lecturer': 'Supervisor Magang',
       'status': 'Disetujui'
     },
   ];
 
   // Widget untuk menampilkan konten berdasarkan tombol yang dipilih
   Widget _buildContent() {
+// ... (no change in implementation)
     switch (_selectedIndex) {
       case 0:
         return _buildBiodataSection();
@@ -398,6 +356,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _buildBiodataSection() {
     // Data biodata yang dinamis berdasarkan input login
+// ... (no change in implementation)
     final Map<String, dynamic> biodata = {
       'Nama': widget.userName,
       'NIM': widget.userNim,
@@ -438,7 +397,7 @@ class _ProfilePageState extends State<ProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Riwayat Akademik (s/d Semester 5)',
+            'Riwayat Akademik (s/d Semester 4)',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -529,7 +488,7 @@ class _ProfilePageState extends State<ProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Riwayat Registrasi',
+            'Riwayat Registrasi (s/d Semester 5)',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -576,7 +535,7 @@ class _ProfilePageState extends State<ProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Daftar Kurikulum',
+            'Daftar Kurikulum (Semester 1 s/d 8)',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -590,6 +549,9 @@ class _ProfilePageState extends State<ProfilePage> {
             itemCount: _kurikulumData.length,
             itemBuilder: (context, index) {
               final semesterData = _kurikulumData[index];
+              final bool isCurrentSemester = semesterData['semester'] == 5;
+              final bool isFutureSemester = semesterData['semester'] > 5;
+
               return Card(
                 elevation: 2,
                 margin: const EdgeInsets.only(bottom: 16),
@@ -598,13 +560,47 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Semester ${semesterData['semester']}',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF3498DB),
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Semester ${semesterData['semester']}',
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF3498DB),
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: isCurrentSemester
+                                  ? const Color(0xFFE67E22).withOpacity(0.1)
+                                  : (isFutureSemester
+                                      ? const Color(0xFFE74C3C).withOpacity(0.1)
+                                      : const Color(0xFF27AE60)
+                                          .withOpacity(0.1)),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Text(
+                              isCurrentSemester
+                                  ? 'Saat Ini'
+                                  : (isFutureSemester
+                                      ? 'Belum Ditempuh'
+                                      : 'Sudah Ditempuh'),
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                                color: isCurrentSemester
+                                    ? const Color(0xFFE67E22)
+                                    : (isFutureSemester
+                                        ? const Color(0xFFE74C3C)
+                                        : const Color(0xFF27AE60)),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 12),
                       SingleChildScrollView(
@@ -650,7 +646,7 @@ class _ProfilePageState extends State<ProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Kartu Rencana Studi (KRS)',
+            'Kartu Rencana Studi (KRS) Semester 5',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -705,6 +701,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   // Widget untuk kartu KRS
+// ... (no change in implementation)
   Widget _buildKrsCard(
       String subject, String time, String lecturer, String status) {
     return Container(
@@ -780,6 +777,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   // Widget pembantu untuk baris detail biodata
+// ... (no change in implementation)
   Widget _buildDetailRow(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -807,6 +805,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+// ... (no change in implementation)
     return Scaffold(
       backgroundColor: const Color(0xFFECF0F1),
       appBar: AppBar(
@@ -896,6 +895,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   // Widget pembantu untuk membangun tombol profil
+// ... (no change in implementation)
   Widget _buildProfileButton(int index, String label, IconData icon) {
     final bool isSelected = _selectedIndex == index;
     return GestureDetector(

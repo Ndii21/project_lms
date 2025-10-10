@@ -3,74 +3,70 @@ import 'package:flutter/material.dart';
 class GradesPage extends StatelessWidget {
   const GradesPage({Key? key}) : super(key: key);
 
-  // Data nilai statis
+  // Data nilai statis (Hanya Semester 5 yang sedang berjalan)
   final List<Map<String, dynamic>> _gradesData = const [
     {
-      'course': 'Pemrograman Mobile',
-      'grade': 'A',
-      'score': 95,
-      'status': 'Lulus',
-      'color': Color(0xFF27AE60),
+      'course': 'Pemrograman perangkat bergerak',
+      'grade': '-',
+      'score': 0,
+      'status': 'Sedang Berjalan',
+      'color': Color(0xFFE67E22), // Orange: Ongoing
     },
     {
-      'course': 'Basis Data',
-      'grade': 'A-',
-      'score': 88,
-      'status': 'Lulus',
-      'color': Color(0xFF27AE60),
-    },
-    {
-      'course': 'Pemrograman Web',
-      'grade': 'B+',
-      'score': 85,
-      'status': 'Lulus',
-      'color': Color(0xFF27AE60),
-    },
-    {
-      'course': 'Algoritma Pemrograman',
-      'grade': 'A',
-      'score': 92,
-      'status': 'Lulus',
-      'color': Color(0xFF27AE60),
-    },
-    {
-      'course': 'Jaringan Komputer',
-      'grade': 'B',
-      'score': 80,
-      'status': 'Lulus',
-      'color': Color(0xFF27AE60),
-    },
-    {
-      'course': 'Sistem Operasi',
-      'grade': 'B+',
-      'score': 83,
-      'status': 'Lulus',
-      'color': Color(0xFF27AE60),
-    },
-    {
-      'course': 'Kecerdasan Buatan',
-      'grade': 'C+',
-      'score': 65,
-      'status': 'Lulus',
+      'course': 'Perencanaan strategi sistem informasi',
+      'grade': '-',
+      'score': 0,
+      'status': 'Sedang Berjalan',
       'color': Color(0xFFE67E22),
     },
     {
-      'course': 'Grafika Komputer',
-      'grade': 'D',
-      'score': 55,
-      'status': 'Belum Lulus',
-      'color': Color(0xFFE74C3C),
+      'course': 'Sistem enterprise resource planning',
+      'grade': '-',
+      'score': 0,
+      'status': 'Sedang Berjalan',
+      'color': Color(0xFFE67E22),
+    },
+    {
+      'course': 'Metodologi penelitian',
+      'grade': '-',
+      'score': 0,
+      'status': 'Sedang Berjalan',
+      'color': Color(0xFFE67E22),
+    },
+    {
+      'course': 'Testing dan implementasi sistem',
+      'grade': '-',
+      'score': 0,
+      'status': 'Sedang Berjalan',
+      'color': Color(0xFFE67E22),
+    },
+    {
+      'course': 'Riset operasi',
+      'grade': '-',
+      'score': 0,
+      'status': 'Sedang Berjalan',
+      'color': Color(0xFFE67E22),
+    },
+    {
+      'course': 'Etika profesi',
+      'grade': '-',
+      'score': 0,
+      'status': 'Sedang Berjalan',
+      'color': Color(0xFFE67E22),
+    },
+    {
+      'course': 'Magang',
+      'grade': '-',
+      'score': 0,
+      'status': 'Sedang Berjalan',
+      'color': Color(0xFFE67E22),
     },
   ];
 
   @override
   Widget build(BuildContext context) {
-    // Menghitung IPK (rata-rata)
-    double totalScore = 0;
-    for (var grade in _gradesData) {
-      totalScore += grade['score'];
-    }
-    double ipk = totalScore / _gradesData.length / 25; // Konversi ke skala 4.0
+    // Menggunakan IPK Kumulatif dari semester sebelumnya (S1-S4) sebagai nilai mock
+    double ipk = 3.79;
 
     return Scaffold(
       backgroundColor: const Color(0xFFECF0F1),
@@ -115,7 +111,7 @@ class GradesPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'dari 4.00',
+                  'S/D Semester 4 dari 4.00',
                   style: TextStyle(
                     fontSize: 14,
                     color: const Color(0xFFECF0F1).withOpacity(0.7),
@@ -216,7 +212,8 @@ class GradesPage extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      'Nilai: $score',
+                      // Menampilkan status jika nilai 0, atau nilai jika ada
+                      score > 0 ? 'Nilai: $score' : 'Nilai: Belum Ada',
                       style: TextStyle(
                         fontSize: 13,
                         color: const Color(0xFF2C3E50).withOpacity(0.6),

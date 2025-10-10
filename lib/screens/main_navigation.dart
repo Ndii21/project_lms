@@ -29,7 +29,7 @@ class _MainNavigationState extends State<MainNavigation> {
   @override
   void initState() {
     super.initState();
-    // Inisialisasi list halaman di sini
+    // Inisialisasi list halaman
     _pages = [
       DashboardPage(userName: widget.userName, onQuickAccessTap: _onQuickAccessTap),
       const SchedulePage(),

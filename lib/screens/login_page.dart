@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  // Fungsi login sederhana tanpa verifikasi
+  // Fungsi login sederhana
   void _handleLogin() {
     final enteredName = _nameController.text;
     final enteredNim = _nimController.text;
@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Logo atau Icon Aplikasi
+                // Logo Aplikasi
                 Container(
                   width: 100,
                   height: 100,
@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 // Judul Aplikasi
                 const Text(
-                  'Campus Hub',
+                  'StudyMate',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,

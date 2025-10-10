@@ -3,82 +3,74 @@ import 'package:flutter/material.dart';
 class SchedulePage extends StatelessWidget {
   const SchedulePage({Key? key}) : super(key: key);
 
-  // Data jadwal statis untuk setiap hari
+  // Data jadwal statis untuk setiap hari (diambil dari mata kuliah Semester 5)
   final Map<String, List<Map<String, String>>> _scheduleData = const {
     'Senin': [
       {
-        'subject': 'Pemrograman Mobile',
-        'time': '10:00 - 12:00',
-        'room': 'Ruang A301',
-        'lecturer': 'Dr. Ahmad Santoso',
+        'subject': 'Perencanaan strategi sistem informasi',
+        'time': '08:00 - 10:00',
+        'room': 'Ruang C401',
+        'lecturer': 'Ir. Budi Santoso, MBA',
       },
       {
-        'subject': 'Basis Data',
+        'subject': 'Pemrograman perangkat bergerak',
+        'time': '10:00 - 12:00',
+        'room': 'Lab Komputer 2',
+        'lecturer': 'Dr. Sarah Setiadi',
+      },
+      {
+        'subject': 'Sistem enterprise resource planning',
         'time': '13:00 - 15:00',
-        'room': 'Ruang B201',
-        'lecturer': 'Ir. Siti Nurhaliza, M.Kom',
+        'room': 'Ruang B301',
+        'lecturer': 'M. Rizki Pratama, S.Kom',
       },
     ],
     'Selasa': [
       {
-        'subject': 'Pemrograman Web',
-        'time': '08:00 - 10:00',
+        'subject': 'Testing dan implementasi sistem',
+        'time': '09:00 - 11:00',
         'room': 'Lab Komputer 1',
-        'lecturer': 'Prof. Bambang Setiawan',
+        'lecturer': 'Dr. Rina Wati',
       },
       {
-        'subject': 'Algoritma Pemrograman',
-        'time': '13:00 - 15:00',
-        'room': 'Ruang C102',
-        'lecturer': 'Dr. Rina Wati',
+        'subject': 'Etika profesi',
+        'time': '10:30 - 12:30',
+        'room': 'Ruang C201',
+        'lecturer': 'Drs. Hadi Susanto',
       },
     ],
     'Rabu': [
       {
-        'subject': 'Jaringan Komputer',
-        'time': '10:00 - 12:00',
+        'subject': 'Riset operasi',
+        'time': '12:00 - 14:00',
         'room': 'Ruang D203',
-        'lecturer': 'M. Rizki Pratama, S.Kom',
+        'lecturer': 'Dr. Lina Marlina',
       },
       {
-        'subject': 'Sistem Operasi',
-        'time': '14:00 - 16:00',
-        'room': 'Ruang A405',
-        'lecturer': 'Dr. Andi Wijaya',
+        'subject': 'Magang',
+        'time': '08:00 - 16:00',
+        'room': 'Kantor',
+        'lecturer': 'Supervisor Magang',
       },
     ],
     'Kamis': [
       {
-        'subject': 'Kecerdasan Buatan',
-        'time': '09:00 - 11:00',
-        'room': 'Ruang B304',
-        'lecturer': 'Prof. Dewi Lestari',
-      },
-      {
-        'subject': 'Grafika Komputer',
-        'time': '13:00 - 15:00',
-        'room': 'Lab Multimedia',
-        'lecturer': 'Drs. Hadi Susanto',
+        'subject': 'Metodologi penelitian',
+        'time': '15:00 - 17:00',
+        'room': 'Ruang A205',
+        'lecturer': 'Prof. Dr. Andi Wijaya',
       },
     ],
     'Jumat': [
-      {
-        'subject': 'Keamanan Informasi',
-        'time': '08:00 - 10:00',
-        'room': 'Ruang C201',
-        'lecturer': 'Dr. Lina Marlina',
-      },
-      {
-        'subject': 'Manajemen Proyek TI',
-        'time': '10:30 - 12:30',
-        'room': 'Ruang A101',
-        'lecturer': 'Ir. Budi Santoso, MBA',
-      },
+      // Tidak ada mata kuliah terjadwal di hari Jumat
     ],
   };
 
   @override
   Widget build(BuildContext context) {
+    // Menghitung IPK (rata-rata)
+    // IPK calculation removed as it's not relevant here but retained in grades_page
+
     return Scaffold(
       backgroundColor: const Color(0xFFECF0F1),
       appBar: AppBar(

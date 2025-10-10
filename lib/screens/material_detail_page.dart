@@ -11,8 +11,8 @@ class MaterialDetailPage extends StatefulWidget {
     Key? key,
     required this.courseName,
     required this.materials,
-    required this.videos,
-    required this.assignments,
+    required this.videos, // Sekarang menjadi this.videos
+    required this.assignments, // Sekarang menjadi this.assignments
     required this.color,
   }) : super(key: key);
 
@@ -35,6 +35,8 @@ class _MaterialDetailPageState extends State<MaterialDetailPage>
     _tabController.dispose();
     super.dispose();
   }
+
+  // Menghapus Data dummy (_assignments dan _videos) karena akan menggunakan widget.assignments dan widget.videos
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +97,7 @@ class _MaterialDetailPageState extends State<MaterialDetailPage>
   Widget _buildAssignmentsTab() {
     return ListView.builder(
       padding: const EdgeInsets.all(16),
+      // Menggunakan data yang dilewatkan (widget.assignments)
       itemCount: widget.assignments.length,
       itemBuilder: (context, index) {
         final assignment = widget.assignments[index];
@@ -110,6 +113,7 @@ class _MaterialDetailPageState extends State<MaterialDetailPage>
   Widget _buildVideosTab() {
     return ListView.builder(
       padding: const EdgeInsets.all(16),
+      // Menggunakan data yang dilewatkan (widget.videos)
       itemCount: widget.videos.length,
       itemBuilder: (context, index) {
         final video = widget.videos[index];

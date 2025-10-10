@@ -13,10 +13,9 @@ class CampusHubApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Campus Hub',
+      title: 'StudyMate',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // Menggunakan font Poppins untuk seluruh aplikasi
         textTheme: GoogleFonts.poppinsTextTheme(),
         primaryColor: const Color(0xFF2C3E50),
         scaffoldBackgroundColor: const Color(0xFFECF0F1),

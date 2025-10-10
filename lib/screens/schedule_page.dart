@@ -3,66 +3,60 @@ import 'package:flutter/material.dart';
 class SchedulePage extends StatelessWidget {
   const SchedulePage({Key? key}) : super(key: key);
 
-  // Data jadwal statis untuk setiap hari (diambil dari mata kuliah Semester 5)
+  // Data jadwal mata kuliah
   final Map<String, List<Map<String, String>>> _scheduleData = const {
     'Senin': [
-      {
-        'subject': 'Perencanaan strategi sistem informasi',
-        'time': '08:00 - 10:00',
-        'room': 'Ruang C401',
-        'lecturer': 'Ir. Budi Santoso, MBA',
-      },
-      {
-        'subject': 'Pemrograman perangkat bergerak',
-        'time': '10:00 - 12:00',
-        'room': 'Lab Komputer 2',
-        'lecturer': 'Dr. Sarah Setiadi',
-      },
-      {
-        'subject': 'Sistem enterprise resource planning',
-        'time': '13:00 - 15:00',
-        'room': 'Ruang B301',
-        'lecturer': 'M. Rizki Pratama, S.Kom',
-      },
+      // tidak ada kelas
     ],
     'Selasa': [
       {
-        'subject': 'Testing dan implementasi sistem',
-        'time': '09:00 - 11:00',
-        'room': 'Lab Komputer 1',
-        'lecturer': 'Dr. Rina Wati',
+        'subject': 'Riset operasi',
+        'time': '07:45 - 10:00',
+        'room': 'FASILKOM 4.81',
+        'lecturer': 'Ahmad Khusaeri, M.Kom.',
       },
       {
-        'subject': 'Etika profesi',
-        'time': '10:30 - 12:30',
-        'room': 'Ruang C201',
-        'lecturer': 'Drs. Hadi Susanto',
+        'subject': 'Pemrograman perangkat bergerak',
+        'time': '15:30 - 18:00',
+        'room': 'FASILKOM Lab Dasar 2',
+        'lecturer': 'Purwantoro, S.Kom., M.Kom.',
       },
     ],
     'Rabu': [
       {
-        'subject': 'Riset operasi',
-        'time': '12:00 - 14:00',
-        'room': 'Ruang D203',
-        'lecturer': 'Dr. Lina Marlina',
-      },
-      {
-        'subject': 'Magang',
-        'time': '08:00 - 16:00',
-        'room': 'Kantor',
-        'lecturer': 'Supervisor Magang',
+        'subject': 'Etika profesi',
+        'time': '15:50 - 17:30',
+        'room': 'FASILKOM 4.75',
+        'lecturer': 'Aziz Masum M.Kom.',
       },
     ],
     'Kamis': [
       {
-        'subject': 'Metodologi penelitian',
-        'time': '15:00 - 17:00',
-        'room': 'Ruang A205',
-        'lecturer': 'Prof. Dr. Andi Wijaya',
+        'subject': 'Perencanaan strategi sistem informasi',
+        'time': '07:30 - 10:00',
+        'room': 'FASILKOM Lab Dasar 2',
+        'lecturer': 'H. Bagja Nugraha, S.T., M.Kom.',
       },
     ],
     'Jumat': [
-      // Tidak ada mata kuliah terjadwal di hari Jumat
+      {
+        'subject': 'Metodologi penelitian',
+        'time': '10:20 - 12:00',
+        'room': 'FASILKOM 4.76',
+        'lecturer': 'Apriade Voutama M.Kom.',
+      },
+      {
+        'subject': 'Sistem enterprise resource planning',
+        'time': '13:00 - 15:30',
+        'room': 'FASILKOM 4.78',
+        'lecturer': 'Azhari Ali Ridha, S.Kom, M.M.S.I',
+      },
+      {
+        'subject': 'Testing dan implementasi sistem',
+        'time': '05:30 - 18:00',
+        'room': 'FASILKOM 4.78',
+        'lecturer': 'Kamal Prihandani. S.Kom., M.Kom.',
+      },
     ],
   };
 

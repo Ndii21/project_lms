@@ -14,20 +14,21 @@ class DashboardPage extends StatelessWidget {
   // Data dummy untuk informasi terkini
   final List<Map<String, dynamic>> _currentInfo = const [
     {
-      'title': 'Pembayaran UKT Semester Genap',
-      'message': 'Batas akhir pembayaran UKT pada 20 Januari 2026',
+      'title': 'Pembayaran UKT Semester Ganjil',
+      'message': 'Batas akhir pembayaran UKT pada 2 Agustus 2025',
       'icon': Icons.payment,
       'color': Color(0xFF3498DB),
     },
     {
       'title': 'Acara Webinar Nasional',
-      'message': 'Webinar "Masa Depan AI" akan diadakan pada 10 November 2025',
+      'message':
+          'Webinar "Masa Depan Web3" akan diadakan pada 10 November 2025 di Aula Syech Kuro',
       'icon': Icons.campaign,
       'color': Color(0xFF27AE60),
     },
     {
-      'title': 'Penyesuaian Jadwal Kuliah',
-      'message': 'Cek kembali jadwal kuliah Anda untuk minggu ini',
+      'title': 'Informasi Perpustakaan',
+      'message': 'Mohon Maaf, Perpustakaan tutup pada 10 - 13 Oktober 2025',
       'icon': Icons.calendar_today,
       'color': Color(0xFFE67E22),
     },
@@ -160,15 +161,15 @@ class DashboardPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   _buildScheduleCard(
-                    'Pemrograman Mobile',
-                    '10:00 - 12:00',
+                    'Riset Operasi',
+                    '07:45 - 10:00',
                     'Ruang A301',
                     Icons.phone_android,
                   ),
                   const SizedBox(height: 10),
                   _buildScheduleCard(
-                    'Basis Data',
-                    '13:00 - 15:00',
+                    'Pemrograman Perangkat Bergerak',
+                    '15:30 - 17:30',
                     'Ruang B201',
                     Icons.storage,
                   ),
@@ -185,11 +186,11 @@ class DashboardPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   ..._currentInfo.map((info) => _buildInfoCard(
-                    info['title'],
-                    info['message'],
-                    info['icon'],
-                    info['color'],
-                  )),
+                        info['title'],
+                        info['message'],
+                        info['icon'],
+                        info['color'],
+                      )),
                 ],
               ),
             ),
@@ -262,7 +263,7 @@ class DashboardPage extends StatelessWidget {
     );
   }
 
-  // Widget baru untuk kartu informasi terkini
+  // Widget untuk kartu informasi terkini
   Widget _buildInfoCard(
       String title, String message, IconData icon, Color color) {
     return Container(

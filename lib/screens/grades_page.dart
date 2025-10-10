@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class GradesPage extends StatelessWidget {
   const GradesPage({Key? key}) : super(key: key);
 
-  // Data nilai statis (Hanya Semester 5 yang sedang berjalan)
+  // Data nilai 
   final List<Map<String, dynamic>> _gradesData = const [
     {
       'course': 'Pemrograman perangkat bergerak',
       'grade': '-',
       'score': 0,
       'status': 'Sedang Berjalan',
-      'color': Color(0xFFE67E22), // Orange: Ongoing
+      'color': Color(0xFFE67E22), 
     },
     {
       'course': 'Perencanaan strategi sistem informasi',

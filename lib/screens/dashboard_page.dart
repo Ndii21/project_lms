@@ -165,14 +165,14 @@ class DashboardPage extends StatelessWidget {
                   _buildScheduleCard(
                     'Riset Operasi',
                     '07:45 - 10:00',
-                    'Ruang A301',
+                    'FASILKOM 4-81',
                     Icons.phone_android,
                   ),
                   const SizedBox(height: 10),
                   _buildScheduleCard(
                     'Pemrograman Perangkat Bergerak',
                     '15:30 - 17:30',
-                    'Ruang B201',
+                    'FASILKOM Lab Dasar 2',
                     Icons.storage,
                   ),
                   const SizedBox(height: 24),

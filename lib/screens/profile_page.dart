@@ -18,260 +18,171 @@ class _ProfilePageState extends State<ProfilePage> {
   // Index untuk mengontrol halaman mana yang aktif
   int _selectedIndex = 0;
 
-  // Helper untuk menghasilkan mock data mata kuliah dengan nilai
-  List<Map<String, dynamic>> _generateSemesterCourses(
-      int semester, List<String> subjects) {
-    int baseScore = 90 - (semester - 1) * 2;
-    String baseGrade = (semester < 3) ? 'A' : 'A-';
-
-    return List.generate(subjects.length, (i) {
-      int sks;
-      if (subjects[i].toLowerCase().contains('inggris') ||
-          subjects[i].toLowerCase().contains('pancasila') ||
-          subjects[i].toLowerCase().contains('kewarganegaraan') ||
-          subjects[i].toLowerCase().contains('agama') ||
-          subjects[i].toLowerCase().contains('etika') ||
-          subjects[i].toLowerCase().contains('hukum')) {
-        sks = 2; // Reduce SKS for non-core/general subjects
-      } else if (subjects[i].toLowerCase().contains('pemrograman') ||
-          subjects[i].toLowerCase().contains('basis data') ||
-          subjects[i].toLowerCase().contains('struktur data') ||
-          subjects[i].toLowerCase().contains('rekayasa') ||
-          subjects[i].toLowerCase().contains('jaringan') ||
-          subjects[i].toLowerCase().contains('testing')) {
-        sks = 4; 
-      } else if (subjects[i].toLowerCase().contains('skripsi')) {
-        sks = 6;
-      } else {
-        sks = 3;
-      }
-      if (subjects[i].toLowerCase().contains('magang') ||
-          subjects[i].toLowerCase().contains('kkn')) sks = 3;
-
-      int score = baseScore + (i % 3);
-      String grade = baseGrade;
-      if (score >= 90)
-        grade = 'A';
-      else if (score >= 85)
-        grade = 'A-';
-      else if (score >= 80) grade = 'B+';
-
-      return {
-        'no': i + 1,
-        'kode': 'MK${semester}0${i + 1}',
-        'nama': subjects[i],
-        'sks': sks,
-        'nilai_angka': score,
-        'nilai_huruf': grade,
-      };
-    });
-  }
-
-  final Map<int, List<String>> _allCourseData = const {
-    1: [
-      'Kepemimpinan & keterampilan interpersonal',
-      'Aljabar linear',
-      'Pengantar teknologi informasi',
-      'Pancasila',
-      'Bahasa inggris umum',
-      'Pengenalan algoritma dan pemrograman',
-      'Pendidikan agama',
-      'Budaya bangsa',
-    ],
-    2: [
-      'E-business',
-      'Bahasa inggris untuk presentasi bisnis',
-      'Bahasa indonesia',
-      'Pengenalan basis data',
-      'Konsep sistem informasi',
-      'Kewarganegaraan',
-      'Algoritma dan struktur data',
-    ],
-    3: [
-      'Basis data lanjut',
-      'Sistem informasi akuntansi dan keuangan',
-      'Statistika & probabilitas',
-      'Sistem operasi',
-      'Fisika dasar',
-      'Organisasi dan arsitektur komputer',
-      'Analisis proses bisnis',
-    ],
-    4: [
-      'Rekayasa perangkat lunak',
-      'Data warehouse',
-      'Pemrograman berbasis web',
-      'Manajemen sistem informasi',
-      'Jaringan dan keamanan sistem',
-      'Pemrograman berorientasi objek',
-      'Analisa dan perancangan sistem informasi',
-    ],
-    5: [
-      'Pemrograman perangkat bergerak',
-      'Perencanaan strategi sistem informasi',
-      'Sistem enterprise resource planning',
-      'Metodologi penelitian',
-      'Testing dan implementasi sistem',
-      'Riset operasi',
-      'Etika profesi',
-      'Magang',
-    ],
-    6: [
-      'Sistem cerdas',
-      'Interaksi manusia dan komputer',
-      'Technopreneurship',
-      'Teknik data mining',
-      'Sistem pendukung keputusan',
-      'Computing assisted audit tools & techniques',
-      'Information system audit',
-      'Digital and new media',
-      'E-business design',
-      'Developing business applications',
-      'Web services applications',
-      'Komputasi awan dan blockchain',
-      'Karya tulis ilmiah',
-      'KKN',
-    ],
-    7: [
-      'Pemrograman animasi dan multimedia',
-      'Hukum paten dan merk',
-      'Kapita selekta ilmu komputer',
-      'Text mining',
-      'Business web solution',
-      'Analisis big data',
-      'IT in financial market',
-      'IT governance',
-      'Integrasi aplikasi korporasi',
-      'Teknologi opensource dan terbaru',
-    ],
-    8: ['Skripsi'],
-  };
-
   // 1. Data Akademik (Semester 1-4 Complete, S5 Current)
-  late final List<Map<String, dynamic>> _akademikData = [
+  final List<Map<String, dynamic>> _akademikData = const [
     {
       'semester': 1,
       'ip': 3.88,
-      'matkul': _generateSemesterCourses(1, _allCourseData[1]!),
+      'matkul': [
+        {'no': 1, 'kode': 'MK101', 'nama': 'Kepemimpinan & keterampilan interpersonal', 'sks': 3, 'nilai_angka': 90, 'nilai_huruf': 'A'},
+        {'no': 2, 'kode': 'MK102', 'nama': 'Aljabar linear', 'sks': 3, 'nilai_angka': 88, 'nilai_huruf': 'A-'},
+        {'no': 3, 'kode': 'MK103', 'nama': 'Pengantar teknologi informasi', 'sks': 3, 'nilai_angka': 91, 'nilai_huruf': 'A'},
+        {'no': 4, 'kode': 'MK104', 'nama': 'Pancasila', 'sks': 2, 'nilai_angka': 87, 'nilai_huruf': 'A-'},
+        {'no': 5, 'kode': 'MK105', 'nama': 'Bahasa inggris umum', 'sks': 2, 'nilai_angka': 85, 'nilai_huruf': 'A-'},
+        {'no': 6, 'kode': 'MK106', 'nama': 'Pengenalan algoritma dan pemrograman', 'sks': 4, 'nilai_angka': 89, 'nilai_huruf': 'A-'},
+        {'no': 7, 'kode': 'MK107', 'nama': 'Pendidikan agama', 'sks': 2, 'nilai_angka': 92, 'nilai_huruf': 'A'},
+        {'no': 8, 'kode': 'MK108', 'nama': 'Budaya bangsa', 'sks': 3, 'nilai_angka': 86, 'nilai_huruf': 'A-'},
+      ],
     },
     {
       'semester': 2,
       'ip': 3.75,
-      'matkul': _generateSemesterCourses(2, _allCourseData[2]!),
+      'matkul': [
+        {'no': 1, 'kode': 'MK201', 'nama': 'E-business', 'sks': 3, 'nilai_angka': 85, 'nilai_huruf': 'A-'},
+        {'no': 2, 'kode': 'MK202', 'nama': 'Bahasa inggris untuk presentasi bisnis', 'sks': 2, 'nilai_angka': 83, 'nilai_huruf': 'B+'},
+        {'no': 3, 'kode': 'MK203', 'nama': 'Bahasa indonesia', 'sks': 2, 'nilai_angka': 86, 'nilai_huruf': 'A-'},
+        {'no': 4, 'kode': 'MK204', 'nama': 'Pengenalan basis data', 'sks': 4, 'nilai_angka': 89, 'nilai_huruf': 'A-'},
+        {'no': 5, 'kode': 'MK205', 'nama': 'Konsep sistem informasi', 'sks': 3, 'nilai_angka': 84, 'nilai_huruf': 'B+'},
+        {'no': 6, 'kode': 'MK206', 'nama': 'Kewarganegaraan', 'sks': 2, 'nilai_angka': 87, 'nilai_huruf': 'A-'},
+        {'no': 7, 'kode': 'MK207', 'nama': 'Algoritma dan struktur data', 'sks': 4, 'nilai_angka': 90, 'nilai_huruf': 'A'},
+      ],
     },
     {
       'semester': 3,
       'ip': 3.80,
-      'matkul': _generateSemesterCourses(3, _allCourseData[3]!),
+      'matkul': [
+        {'no': 1, 'kode': 'MK301', 'nama': 'Basis data lanjut', 'sks': 4, 'nilai_angka': 88, 'nilai_huruf': 'A-'},
+        {'no': 2, 'kode': 'MK302', 'nama': 'Sistem informasi akuntansi dan keuangan', 'sks': 3, 'nilai_angka': 85, 'nilai_huruf': 'A-'},
+        {'no': 3, 'kode': 'MK303', 'nama': 'Statistika & probabilitas', 'sks': 3, 'nilai_angka': 86, 'nilai_huruf': 'A-'},
+        {'no': 4, 'kode': 'MK304', 'nama': 'Sistem operasi', 'sks': 4, 'nilai_angka': 89, 'nilai_huruf': 'A-'},
+        {'no': 5, 'kode': 'MK305', 'nama': 'Fisika dasar', 'sks': 3, 'nilai_angka': 84, 'nilai_huruf': 'B+'},
+        {'no': 6, 'kode': 'MK306', 'nama': 'Organisasi dan arsitektur komputer', 'sks': 3, 'nilai_angka': 87, 'nilai_huruf': 'A-'},
+        {'no': 7, 'kode': 'MK307', 'nama': 'Analisis proses bisnis', 'sks': 3, 'nilai_angka': 90, 'nilai_huruf': 'A'},
+      ],
     },
     {
       'semester': 4,
       'ip': 3.72,
-      'matkul': _generateSemesterCourses(4, _allCourseData[4]!),
-    },
-  ];
-
-  // 2. Data Registrasi (Semester 1-5 Complete)
-  final List<Map<String, dynamic>> _registrasiData = const [
-    {
-      'semester': 1,
-      'jumlah': 'Rp 5.000.000',
-      'tanggal_bayar': '20 Jan 2021',
-      'metode': 'VA',
-      'lunas': true
-    },
-    {
-      'semester': 2,
-      'jumlah': 'Rp 5.000.000',
-      'tanggal_bayar': '25 Jul 2021',
-      'metode': 'VA',
-      'lunas': true
-    },
-    {
-      'semester': 3,
-      'jumlah': 'Rp 5.500.000',
-      'tanggal_bayar': '21 Jan 2022',
-      'metode': 'VA',
-      'lunas': true
-    },
-    {
-      'semester': 4,
-      'jumlah': 'Rp 5.500.000',
-      'tanggal_bayar': '23 Jul 2022',
-      'metode': 'VA',
-      'lunas': true
-    },
-    {
-      'semester': 5,
-      'jumlah': 'Rp 6.000.000',
-      'tanggal_bayar': '22 Jan 2023',
-      'metode': 'VA',
-      'lunas': true
+      'matkul': [
+        {'no': 1, 'kode': 'MK401', 'nama': 'Rekayasa perangkat lunak', 'sks': 4, 'nilai_angka': 86, 'nilai_huruf': 'A-'},
+        {'no': 2, 'kode': 'MK402', 'nama': 'Data warehouse', 'sks': 3, 'nilai_angka': 83, 'nilai_huruf': 'B+'},
+        {'no': 3, 'kode': 'MK403', 'nama': 'Pemrograman berbasis web', 'sks': 4, 'nilai_angka': 88, 'nilai_huruf': 'A-'},
+        {'no': 4, 'kode': 'MK404', 'nama': 'Manajemen sistem informasi', 'sks': 3, 'nilai_angka': 84, 'nilai_huruf': 'B+'},
+        {'no': 5, 'kode': 'MK405', 'nama': 'Jaringan dan keamanan sistem', 'sks': 4, 'nilai_angka': 89, 'nilai_huruf': 'A-'},
+        {'no': 6, 'kode': 'MK406', 'nama': 'Pemrograman berorientasi objek', 'sks': 4, 'nilai_angka': 90, 'nilai_huruf': 'A'},
+        {'no': 7, 'kode': 'MK407', 'nama': 'Analisa dan perancangan sistem informasi', 'sks': 3, 'nilai_angka': 87, 'nilai_huruf': 'A-'},
+      ],
     },
   ];
 
   // 3. Data Kurikulum (Semester 1-8 Full)
-  late final List<Map<String, dynamic>> _kurikulumData = [
-    for (int s = 1; s <= 8; s++)
-      {
-        'semester': s,
-        'matkul': [
-          for (int i = 0; i < _allCourseData[s]!.length; i++)
-            {
-              'no': i + 1,
-              'kode': 'MK${s}0${i + 1}',
-              'nama': _allCourseData[s]![i],
-              // Recalculate SKS here (simplified, to avoid calling _generateSemesterCourses multiple times)
-              'sks': [6].contains(s)
-                  ? 3
-                  : (s == 8
-                      ? 6
-                      : (_allCourseData[s]![i]
-                                  .toLowerCase()
-                                  .contains('inggris') ||
-                              _allCourseData[s]![i]
-                                  .toLowerCase()
-                                  .contains('pancasila') ||
-                              _allCourseData[s]![i]
-                                  .toLowerCase()
-                                  .contains('kewarganegaraan') ||
-                              _allCourseData[s]![i]
-                                  .toLowerCase()
-                                  .contains('agama') ||
-                              _allCourseData[s]![i]
-                                  .toLowerCase()
-                                  .contains('etika') ||
-                              _allCourseData[s]![i]
-                                  .toLowerCase()
-                                  .contains('hukum')
-                          ? 2
-                          : (_allCourseData[s]![i]
-                                      .toLowerCase()
-                                      .contains('pemrograman') ||
-                                  _allCourseData[s]![i]
-                                      .toLowerCase()
-                                      .contains('basis data') ||
-                                  _allCourseData[s]![i]
-                                      .toLowerCase()
-                                      .contains('struktur data') ||
-                                  _allCourseData[s]![i]
-                                      .toLowerCase()
-                                      .contains('rekayasa') ||
-                                  _allCourseData[s]![i]
-                                      .toLowerCase()
-                                      .contains('jaringan') ||
-                                  _allCourseData[s]![i]
-                                      .toLowerCase()
-                                      .contains('testing')
-                              ? 4
-                              : 3))),
-            },
-        ],
-      },
+  final List<Map<String, dynamic>> _kurikulumData = const [
+    {
+      'semester': 1,
+      'matkul': [
+        {'no': 1, 'kode': 'MK101', 'nama': 'Kepemimpinan & keterampilan interpersonal', 'sks': 3},
+        {'no': 2, 'kode': 'MK102', 'nama': 'Aljabar linear', 'sks': 3},
+        {'no': 3, 'kode': 'MK103', 'nama': 'Pengantar teknologi informasi', 'sks': 3},
+        {'no': 4, 'kode': 'MK104', 'nama': 'Pancasila', 'sks': 2},
+        {'no': 5, 'kode': 'MK105', 'nama': 'Bahasa inggris umum', 'sks': 2},
+        {'no': 6, 'kode': 'MK106', 'nama': 'Pengenalan algoritma dan pemrograman', 'sks': 4},
+        {'no': 7, 'kode': 'MK107', 'nama': 'Pendidikan agama', 'sks': 2},
+        {'no': 8, 'kode': 'MK108', 'nama': 'Budaya bangsa', 'sks': 3},
+      ],
+    },
+    {
+      'semester': 2,
+      'matkul': [
+        {'no': 1, 'kode': 'MK201', 'nama': 'E-business', 'sks': 3},
+        {'no': 2, 'kode': 'MK202', 'nama': 'Bahasa inggris untuk presentasi bisnis', 'sks': 2},
+        {'no': 3, 'kode': 'MK203', 'nama': 'Bahasa indonesia', 'sks': 2},
+        {'no': 4, 'kode': 'MK204', 'nama': 'Pengenalan basis data', 'sks': 4},
+        {'no': 5, 'kode': 'MK205', 'nama': 'Konsep sistem informasi', 'sks': 3},
+        {'no': 6, 'kode': 'MK206', 'nama': 'Kewarganegaraan', 'sks': 2},
+        {'no': 7, 'kode': 'MK207', 'nama': 'Algoritma dan struktur data', 'sks': 4},
+      ],
+    },
+    {
+      'semester': 3,
+      'matkul': [
+        {'no': 1, 'kode': 'MK301', 'nama': 'Basis data lanjut', 'sks': 4},
+        {'no': 2, 'kode': 'MK302', 'nama': 'Sistem informasi akuntansi dan keuangan', 'sks': 3},
+        {'no': 3, 'kode': 'MK303', 'nama': 'Statistika & probabilitas', 'sks': 3},
+        {'no': 4, 'kode': 'MK304', 'nama': 'Sistem operasi', 'sks': 4},
+        {'no': 5, 'kode': 'MK305', 'nama': 'Fisika dasar', 'sks': 3},
+        {'no': 6, 'kode': 'MK306', 'nama': 'Organisasi dan arsitektur komputer', 'sks': 3},
+        {'no': 7, 'kode': 'MK307', 'nama': 'Analisis proses bisnis', 'sks': 3},
+      ],
+    },
+    {
+      'semester': 4,
+      'matkul': [
+        {'no': 1, 'kode': 'MK401', 'nama': 'Rekayasa perangkat lunak', 'sks': 4},
+        {'no': 2, 'kode': 'MK402', 'nama': 'Data warehouse', 'sks': 3},
+        {'no': 3, 'kode': 'MK403', 'nama': 'Pemrograman berbasis web', 'sks': 4},
+        {'no': 4, 'kode': 'MK404', 'nama': 'Manajemen sistem informasi', 'sks': 3},
+        {'no': 5, 'kode': 'MK405', 'nama': 'Jaringan dan keamanan sistem', 'sks': 4},
+        {'no': 6, 'kode': 'MK406', 'nama': 'Pemrograman berorientasi objek', 'sks': 4},
+        {'no': 7, 'kode': 'MK407', 'nama': 'Analisa dan perancangan sistem informasi', 'sks': 3},
+      ],
+    },
+    {
+      'semester': 5,
+      'matkul': [
+        {'no': 1, 'kode': 'MK501', 'nama': 'Pemrograman perangkat bergerak', 'sks': 4},
+        {'no': 2, 'kode': 'MK502', 'nama': 'Perencanaan strategi sistem informasi', 'sks': 3},
+        {'no': 3, 'kode': 'MK503', 'nama': 'Sistem enterprise resource planning', 'sks': 3},
+        {'no': 4, 'kode': 'MK504', 'nama': 'Metodologi penelitian', 'sks': 3},
+        {'no': 5, 'kode': 'MK505', 'nama': 'Testing dan implementasi sistem', 'sks': 4},
+        {'no': 6, 'kode': 'MK506', 'nama': 'Riset operasi', 'sks': 3},
+        {'no': 7, 'kode': 'MK507', 'nama': 'Etika profesi', 'sks': 2},
+        {'no': 8, 'kode': 'MK508', 'nama': 'Magang', 'sks': 3},
+      ],
+    },
+    {
+      'semester': 6,
+      'matkul': [
+        {'no': 1, 'kode': 'MK601', 'nama': 'Sistem cerdas', 'sks': 3},
+        {'no': 2, 'kode': 'MK602', 'nama': 'Interaksi manusia dan komputer', 'sks': 3},
+        {'no': 3, 'kode': 'MK603', 'nama': 'Technopreneurship', 'sks': 3},
+        {'no': 4, 'kode': 'MK604', 'nama': 'Teknik data mining', 'sks': 3},
+        {'no': 5, 'kode': 'MK605', 'nama': 'Sistem pendukung keputusan', 'sks': 3},
+        {'no': 6, 'kode': 'MK606', 'nama': 'Computing assisted audit tools & techniques', 'sks': 3},
+        {'no': 7, 'kode': 'MK607', 'nama': 'Information system audit', 'sks': 3},
+        {'no': 8, 'kode': 'MK608', 'nama': 'Digital and new media', 'sks': 3},
+        {'no': 9, 'kode': 'MK609', 'nama': 'E-business design', 'sks': 3},
+        {'no': 10, 'kode': 'MK610', 'nama': 'Developing business applications', 'sks': 3},
+        {'no': 11, 'kode': 'MK611', 'nama': 'Web services applications', 'sks': 3},
+        {'no': 12, 'kode': 'MK612', 'nama': 'Komputasi awan dan blockchain', 'sks': 3},
+        {'no': 13, 'kode': 'MK613', 'nama': 'Karya tulis ilmiah', 'sks': 3},
+        {'no': 14, 'kode': 'MK614', 'nama': 'KKN', 'sks': 3},
+      ],
+    },
+    {
+      'semester': 7,
+      'matkul': [
+        {'no': 1, 'kode': 'MK701', 'nama': 'Pemrograman animasi dan multimedia', 'sks': 3},
+        {'no': 2, 'kode': 'MK702', 'nama': 'Hukum paten dan merk', 'sks': 2},
+        {'no': 3, 'kode': 'MK703', 'nama': 'Kapita selekta ilmu komputer', 'sks': 3},
+        {'no': 4, 'kode': 'MK704', 'nama': 'Text mining', 'sks': 3},
+        {'no': 5, 'kode': 'MK705', 'nama': 'Business web solution', 'sks': 3},
+        {'no': 6, 'kode': 'MK706', 'nama': 'Analisis big data', 'sks': 3},
+        {'no': 7, 'kode': 'MK707', 'nama': 'IT in financial market', 'sks': 3},
+        {'no': 8, 'kode': 'MK708', 'nama': 'IT governance', 'sks': 3},
+        {'no': 9, 'kode': 'MK709', 'nama': 'Integrasi aplikasi korporasi', 'sks': 3},
+        {'no': 10, 'kode': 'MK710', 'nama': 'Teknologi opensource dan terbaru', 'sks': 3},
+      ],
+    },
+    {
+      'semester': 8,
+      'matkul': [
+        {'no': 1, 'kode': 'MK801', 'nama': 'Skripsi', 'sks': 6},
+      ],
+    },
   ];
 
   // 4. Data KRS (Semester 5 Active)
   final List<Map<String, String>> _krsData = const [
-    // Courses for Semester 5
     {
       'subject': 'Pemrograman perangkat bergerak',
       'time': '10:00 - 12:00',
@@ -330,6 +241,45 @@ class _ProfilePageState extends State<ProfilePage> {
     },
   ];
 
+  // Data Registrasi (Semester 1-5 Complete)
+  final List<Map<String, dynamic>> _registrasiData = const [
+    {
+      'semester': 1,
+      'jumlah': 'Rp 5.000.000',
+      'tanggal_bayar': '20 September 2023',
+      'metode': 'VA',
+      'lunas': true
+    },
+    {
+      'semester': 2,
+      'jumlah': 'Rp 5.000.000',
+      'tanggal_bayar': '2 Februari 2024',
+      'metode': 'VA',
+      'lunas': true
+    },
+    {
+      'semester': 3,
+      'jumlah': 'Rp 5.000.000',
+      'tanggal_bayar': '10 Agustus 2024',
+      'metode': 'VA',
+      'lunas': true
+    },
+    {
+      'semester': 4,
+      'jumlah': 'Rp 5.000.000',
+      'tanggal_bayar': '10 Februari 2025',
+      'metode': 'VA',
+      'lunas': true
+    },
+    {
+      'semester': 5,
+      'jumlah': 'Rp 5.000.000',
+      'tanggal_bayar': '30 Juli 2025',
+      'metode': 'VA',
+      'lunas': true
+    },
+  ];
+
   // Widget untuk menampilkan konten berdasarkan tombol yang dipilih
   Widget _buildContent() {
     switch (_selectedIndex) {
@@ -351,7 +301,6 @@ class _ProfilePageState extends State<ProfilePage> {
   // --- Widget untuk masing-masing halaman ---
 
   Widget _buildBiodataSection() {
-    // Data biodata yang dinamis berdasarkan input login
     final Map<String, dynamic> biodata = {
       'Nama': widget.userName,
       'NIM': widget.userNim,
@@ -467,7 +416,7 @@ class _ProfilePageState extends State<ProfilePage> {
             scrollDirection: Axis.horizontal,
             child: DataTable(
               headingRowColor:
-                  MaterialStateProperty.all(const Color(0xFFF0F4F7)),
+                  WidgetStateProperty.all(const Color(0xFFF0F4F7)),
               columns: const [
                 DataColumn(label: Text('Semester')),
                 DataColumn(label: Text('Jumlah')),
@@ -539,24 +488,20 @@ class _ProfilePageState extends State<ProfilePage> {
                             horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
                           color: isCurrentSemester
-                              ? const Color(0xFFE67E22).withOpacity(0.1)
+                              ? const Color(0xFFE67E22)
                               : (isFutureSemester
-                                  ? const Color(0xFFE74C3C).withOpacity(0.1)
-                                  : const Color(0xFF27AE60).withOpacity(0.1)),
+                                  ? const Color(0xFFE74C3C)
+                                  : const Color(0xFF27AE60)),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: Text(
                           isCurrentSemester
                               ? 'Saat Ini'
                               : (isFutureSemester ? 'Belum Ditempuh' : 'Sudah Ditempuh'),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
-                            color: isCurrentSemester
-                                ? const Color(0xFFE67E22)
-                                : (isFutureSemester
-                                    ? const Color(0xFFE74C3C)
-                                    : const Color(0xFF27AE60)),
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -650,12 +595,12 @@ class _ProfilePageState extends State<ProfilePage> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Color(0xFFE0E0E0),
             spreadRadius: 1,
             blurRadius: 5,
-            offset: const Offset(0, 2),
+            offset: Offset(0, 2),
           ),
         ],
       ),
@@ -699,7 +644,7 @@ class _ProfilePageState extends State<ProfilePage> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
-              color: const Color(0xFF27AE60).withOpacity(0.1),
+              color: const Color(0xFF27AE60),
               borderRadius: BorderRadius.circular(6),
             ),
             child: Text(
@@ -707,7 +652,7 @@ class _ProfilePageState extends State<ProfilePage> {
               style: const TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF27AE60),
+                color: Colors.white,
               ),
             ),
           ),
@@ -805,16 +750,16 @@ class _ProfilePageState extends State<ProfilePage> {
             children: [
               Text(
                 courseCode,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 12,
-                  color: const Color(0xFF2C3E50).withOpacity(0.7),
+                  color: Color(0xFF2C3E50),
                 ),
               ),
               Text(
                 sks,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 12,
-                  color: const Color(0xFF2C3E50).withOpacity(0.7),
+                  color: Color(0xFF2C3E50),
                 ),
               ),
             ],
@@ -879,9 +824,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   const SizedBox(height: 4),
                   Text(
                     widget.userNim,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
-                      color: const Color(0xFFECF0F1).withOpacity(0.8),
+                      color: Color(0xFFECF0F1),
                     ),
                   ),
                 ],
@@ -895,12 +840,12 @@ class _ProfilePageState extends State<ProfilePage> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
+                    color: Color(0xFFE0E0E0),
                     spreadRadius: 1,
                     blurRadius: 5,
-                    offset: const Offset(0, 2),
+                    offset: Offset(0, 2),
                   ),
                 ],
               ),

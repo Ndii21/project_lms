@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'screens/login_page.dart';
 
 void main() {
-  runApp(const CampusHubApp());
+  runApp(const StudyMateApp());
 }
 
-class CampusHubApp extends StatelessWidget {
-  const CampusHubApp({Key? key}) : super(key: key);
+class StudyMateApp extends StatelessWidget {
+  const StudyMateApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

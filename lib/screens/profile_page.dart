@@ -21,12 +21,10 @@ class _ProfilePageState extends State<ProfilePage> {
   // Helper untuk menghasilkan mock data mata kuliah dengan nilai
   List<Map<String, dynamic>> _generateSemesterCourses(
       int semester, List<String> subjects) {
-    // Dummy grading logic (e.g., higher IP for lower semesters)
     int baseScore = 90 - (semester - 1) * 2;
     String baseGrade = (semester < 3) ? 'A' : 'A-';
 
     return List.generate(subjects.length, (i) {
-      // Simple logic to assign mock codes, SKS, and minor grade variations
       int sks;
       if (subjects[i].toLowerCase().contains('inggris') ||
           subjects[i].toLowerCase().contains('pancasila') ||
@@ -41,7 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
           subjects[i].toLowerCase().contains('rekayasa') ||
           subjects[i].toLowerCase().contains('jaringan') ||
           subjects[i].toLowerCase().contains('testing')) {
-        sks = 4; // Higher SKS for major courses
+        sks = 4; 
       } else if (subjects[i].toLowerCase().contains('skripsi')) {
         sks = 6;
       } else {
@@ -69,7 +67,6 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
-  // --- Mata Kuliah Rill Berdasarkan Input Pengguna ---
   final Map<int, List<String>> _allCourseData = const {
     1: [
       'Kepemimpinan & keterampilan interpersonal',
@@ -335,7 +332,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   // Widget untuk menampilkan konten berdasarkan tombol yang dipilih
   Widget _buildContent() {
-// ... (no change in implementation)
     switch (_selectedIndex) {
       case 0:
         return _buildBiodataSection();
@@ -356,7 +352,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _buildBiodataSection() {
     // Data biodata yang dinamis berdasarkan input login
-// ... (no change in implementation)
     final Map<String, dynamic> biodata = {
       'Nama': widget.userName,
       'NIM': widget.userNim,
@@ -414,64 +409,36 @@ class _ProfilePageState extends State<ProfilePage> {
               return Card(
                 elevation: 2,
                 margin: const EdgeInsets.only(bottom: 16),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                child: ExpansionTile(
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Semester ${semesterData['semester']}',
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF3498DB),
-                            ),
-                          ),
-                          Text(
-                            'IP: ${semesterData['ip']}',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF27AE60),
-                            ),
-                          ),
-                        ],
+                      Text(
+                        'Semester ${semesterData['semester']}',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF3498DB),
+                        ),
                       ),
-                      const SizedBox(height: 12),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: DataTable(
-                          columnSpacing: 12,
-                          headingRowColor: MaterialStateProperty.all(
-                              const Color(0xFFF0F4F7)),
-                          columns: const [
-                            DataColumn(label: Text('No')),
-                            DataColumn(label: Text('Kode MK')),
-                            DataColumn(label: Text('Nama MK')),
-                            DataColumn(label: Text('SKS')),
-                            DataColumn(label: Text('Nilai Angka')),
-                            DataColumn(label: Text('Nilai Huruf')),
-                          ],
-                          rows: semesterData['matkul'].map<DataRow>((matkul) {
-                            return DataRow(
-                              cells: [
-                                DataCell(Text(matkul['no'].toString())),
-                                DataCell(Text(matkul['kode'])),
-                                DataCell(Text(matkul['nama'])),
-                                DataCell(Text(matkul['sks'].toString())),
-                                DataCell(
-                                    Text(matkul['nilai_angka'].toString())),
-                                DataCell(Text(matkul['nilai_huruf'])),
-                              ],
-                            );
-                          }).toList(),
+                      Text(
+                        'IP: ${semesterData['ip']}',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF27AE60),
                         ),
                       ),
                     ],
                   ),
+                  children: semesterData['matkul'].map<Widget>((matkul) {
+                    return _buildCourseCard(
+                      matkul['nama'],
+                      matkul['kode'],
+                      'SKS: ${matkul['sks']}',
+                      'Nilai: ${matkul['nilai_huruf']} (${matkul['nilai_angka']})',
+                    );
+                  }).toList(),
                 ),
               );
             },
@@ -555,80 +522,54 @@ class _ProfilePageState extends State<ProfilePage> {
               return Card(
                 elevation: 2,
                 margin: const EdgeInsets.only(bottom: 16),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                child: ExpansionTile(
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Semester ${semesterData['semester']}',
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF3498DB),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: isCurrentSemester
-                                  ? const Color(0xFFE67E22).withOpacity(0.1)
-                                  : (isFutureSemester
-                                      ? const Color(0xFFE74C3C).withOpacity(0.1)
-                                      : const Color(0xFF27AE60)
-                                          .withOpacity(0.1)),
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: Text(
-                              isCurrentSemester
-                                  ? 'Saat Ini'
-                                  : (isFutureSemester
-                                      ? 'Belum Ditempuh'
-                                      : 'Sudah Ditempuh'),
-                              style: TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w600,
-                                color: isCurrentSemester
-                                    ? const Color(0xFFE67E22)
-                                    : (isFutureSemester
-                                        ? const Color(0xFFE74C3C)
-                                        : const Color(0xFF27AE60)),
-                              ),
-                            ),
-                          ),
-                        ],
+                      Text(
+                        'Semester ${semesterData['semester']}',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF3498DB),
+                        ),
                       ),
-                      const SizedBox(height: 12),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: DataTable(
-                          columnSpacing: 12,
-                          headingRowColor: MaterialStateProperty.all(
-                              const Color(0xFFF0F4F7)),
-                          columns: const [
-                            DataColumn(label: Text('No')),
-                            DataColumn(label: Text('Kode MK')),
-                            DataColumn(label: Text('Nama MK')),
-                            DataColumn(label: Text('SKS')),
-                          ],
-                          rows: semesterData['matkul'].map<DataRow>((matkul) {
-                            return DataRow(
-                              cells: [
-                                DataCell(Text(matkul['no'].toString())),
-                                DataCell(Text(matkul['kode'])),
-                                DataCell(Text(matkul['nama'])),
-                                DataCell(Text(matkul['sks'].toString())),
-                              ],
-                            );
-                          }).toList(),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: isCurrentSemester
+                              ? const Color(0xFFE67E22).withOpacity(0.1)
+                              : (isFutureSemester
+                                  ? const Color(0xFFE74C3C).withOpacity(0.1)
+                                  : const Color(0xFF27AE60).withOpacity(0.1)),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Text(
+                          isCurrentSemester
+                              ? 'Saat Ini'
+                              : (isFutureSemester ? 'Belum Ditempuh' : 'Sudah Ditempuh'),
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                            color: isCurrentSemester
+                                ? const Color(0xFFE67E22)
+                                : (isFutureSemester
+                                    ? const Color(0xFFE74C3C)
+                                    : const Color(0xFF27AE60)),
+                          ),
                         ),
                       ),
                     ],
                   ),
+                  children: semesterData['matkul'].map<Widget>((matkul) {
+                    return _buildCourseCard(
+                      matkul['nama'],
+                      matkul['kode'],
+                      'SKS: ${matkul['sks']}',
+                      null, // No grade for kurikulum
+                    );
+                  }).toList(),
                 ),
               );
             },
@@ -701,7 +642,6 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   // Widget untuk kartu KRS
-// ... (no change in implementation)
   Widget _buildKrsCard(
       String subject, String time, String lecturer, String status) {
     return Container(
@@ -777,7 +717,6 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   // Widget pembantu untuk baris detail biodata
-// ... (no change in implementation)
   Widget _buildDetailRow(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -802,10 +741,102 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
+  
+  // Widget pembantu untuk membangun tombol profil
+  Widget _buildProfileButton(int index, String label, IconData icon) {
+    final bool isSelected = _selectedIndex == index;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+        decoration: BoxDecoration(
+          color: isSelected ? const Color(0xFF3498DB) : Colors.transparent,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Column(
+          children: [
+            Icon(
+              icon,
+              color: isSelected ? Colors.white : const Color(0xFF2C3E50),
+              size: 24,
+            ),
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 10,
+                color: isSelected ? Colors.white : const Color(0xFF2C3E50),
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Widget baru untuk menampilkan daftar mata kuliah dalam list yang rapi
+  Widget _buildCourseCard(String courseName, String courseCode, String sks, String? grade) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8.0, left: 16.0, right: 16.0),
+      padding: const EdgeInsets.all(12.0),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF0F4F7),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            courseName,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF2C3E50),
+            ),
+          ),
+          const SizedBox(height: 4),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                courseCode,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: const Color(0xFF2C3E50).withOpacity(0.7),
+                ),
+              ),
+              Text(
+                sks,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: const Color(0xFF2C3E50).withOpacity(0.7),
+                ),
+              ),
+            ],
+          ),
+          if (grade != null)
+            const SizedBox(height: 4),
+          if (grade != null)
+            Text(
+              grade,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF27AE60),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-// ... (no change in implementation)
     return Scaffold(
       backgroundColor: const Color(0xFFECF0F1),
       appBar: AppBar(
@@ -888,44 +919,6 @@ class _ProfilePageState extends State<ProfilePage> {
             // Konten yang berubah
             _buildContent(),
             const SizedBox(height: 24),
-          ],
-        ),
-      ),
-    );
-  }
-
-  // Widget pembantu untuk membangun tombol profil
-// ... (no change in implementation)
-  Widget _buildProfileButton(int index, String label, IconData icon) {
-    final bool isSelected = _selectedIndex == index;
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _selectedIndex = index;
-        });
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-        decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFF3498DB) : Colors.transparent,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Column(
-          children: [
-            Icon(
-              icon,
-              color: isSelected ? Colors.white : const Color(0xFF2C3E50),
-              size: 24,
-            ),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 10,
-                color: isSelected ? Colors.white : const Color(0xFF2C3E50),
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-              ),
-            ),
           ],
         ),
       ),

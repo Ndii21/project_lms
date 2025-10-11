@@ -37,14 +37,16 @@ class DashboardPage extends StatelessWidget {
   // Data dummy untuk notifikasi
   final List<Map<String, dynamic>> _notifications = const [
     {
-      'title': 'Nilai Baru',
-      'message': 'Nilai UTS Pemrograman Web telah tersedia',
+      'title': 'Tugas Baru',
+      'message':
+          'Silakan kerjakan tugas Pemrograman Perangkat Bergerak, Tugas 1 Desain UI.',
       'icon': Icons.grade,
       'color': Color(0xFFE67E22),
     },
     {
       'title': 'Materi Baru',
-      'message': 'Materi Algoritma Pemrograman telah diupload',
+      'message':
+          'Materi Cara Menyusun Proposal telah diunggah di mata kuliah Metodologi Penelitian.',
       'icon': Icons.book,
       'color': Color(0xFF3498DB),
     },

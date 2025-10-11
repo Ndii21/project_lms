@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login_page.dart';
 
 class ProfilePage extends StatefulWidget {
   final String userName;
@@ -24,53 +25,256 @@ class _ProfilePageState extends State<ProfilePage> {
       'semester': 1,
       'ip': 3.88,
       'matkul': [
-        {'no': 1, 'kode': 'MK101', 'nama': 'Kepemimpinan & keterampilan interpersonal', 'sks': 3, 'nilai_angka': 90, 'nilai_huruf': 'A'},
-        {'no': 2, 'kode': 'MK102', 'nama': 'Aljabar linear', 'sks': 3, 'nilai_angka': 88, 'nilai_huruf': 'A-'},
-        {'no': 3, 'kode': 'MK103', 'nama': 'Pengantar teknologi informasi', 'sks': 3, 'nilai_angka': 91, 'nilai_huruf': 'A'},
-        {'no': 4, 'kode': 'MK104', 'nama': 'Pancasila', 'sks': 2, 'nilai_angka': 87, 'nilai_huruf': 'A-'},
-        {'no': 5, 'kode': 'MK105', 'nama': 'Bahasa inggris umum', 'sks': 2, 'nilai_angka': 85, 'nilai_huruf': 'A-'},
-        {'no': 6, 'kode': 'MK106', 'nama': 'Pengenalan algoritma dan pemrograman', 'sks': 4, 'nilai_angka': 89, 'nilai_huruf': 'A-'},
-        {'no': 7, 'kode': 'MK107', 'nama': 'Pendidikan agama', 'sks': 2, 'nilai_angka': 92, 'nilai_huruf': 'A'},
-        {'no': 8, 'kode': 'MK108', 'nama': 'Budaya bangsa', 'sks': 3, 'nilai_angka': 86, 'nilai_huruf': 'A-'},
+        {
+          'no': 1,
+          'kode': 'MK101',
+          'nama': 'Kepemimpinan & keterampilan interpersonal',
+          'sks': 3,
+          'nilai_angka': 90,
+          'nilai_huruf': 'A'
+        },
+        {
+          'no': 2,
+          'kode': 'MK102',
+          'nama': 'Aljabar linear',
+          'sks': 3,
+          'nilai_angka': 88,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 3,
+          'kode': 'MK103',
+          'nama': 'Pengantar teknologi informasi',
+          'sks': 3,
+          'nilai_angka': 91,
+          'nilai_huruf': 'A'
+        },
+        {
+          'no': 4,
+          'kode': 'MK104',
+          'nama': 'Pancasila',
+          'sks': 2,
+          'nilai_angka': 87,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 5,
+          'kode': 'MK105',
+          'nama': 'Bahasa inggris umum',
+          'sks': 2,
+          'nilai_angka': 85,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 6,
+          'kode': 'MK106',
+          'nama': 'Pengenalan algoritma dan pemrograman',
+          'sks': 4,
+          'nilai_angka': 89,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 7,
+          'kode': 'MK107',
+          'nama': 'Pendidikan agama',
+          'sks': 2,
+          'nilai_angka': 92,
+          'nilai_huruf': 'A'
+        },
+        {
+          'no': 8,
+          'kode': 'MK108',
+          'nama': 'Budaya bangsa',
+          'sks': 3,
+          'nilai_angka': 86,
+          'nilai_huruf': 'A-'
+        },
       ],
     },
     {
       'semester': 2,
       'ip': 3.75,
       'matkul': [
-        {'no': 1, 'kode': 'MK201', 'nama': 'E-business', 'sks': 3, 'nilai_angka': 85, 'nilai_huruf': 'A-'},
-        {'no': 2, 'kode': 'MK202', 'nama': 'Bahasa inggris untuk presentasi bisnis', 'sks': 2, 'nilai_angka': 83, 'nilai_huruf': 'B+'},
-        {'no': 3, 'kode': 'MK203', 'nama': 'Bahasa indonesia', 'sks': 2, 'nilai_angka': 86, 'nilai_huruf': 'A-'},
-        {'no': 4, 'kode': 'MK204', 'nama': 'Pengenalan basis data', 'sks': 4, 'nilai_angka': 89, 'nilai_huruf': 'A-'},
-        {'no': 5, 'kode': 'MK205', 'nama': 'Konsep sistem informasi', 'sks': 3, 'nilai_angka': 84, 'nilai_huruf': 'B+'},
-        {'no': 6, 'kode': 'MK206', 'nama': 'Kewarganegaraan', 'sks': 2, 'nilai_angka': 87, 'nilai_huruf': 'A-'},
-        {'no': 7, 'kode': 'MK207', 'nama': 'Algoritma dan struktur data', 'sks': 4, 'nilai_angka': 90, 'nilai_huruf': 'A'},
+        {
+          'no': 1,
+          'kode': 'MK201',
+          'nama': 'E-business',
+          'sks': 3,
+          'nilai_angka': 85,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 2,
+          'kode': 'MK202',
+          'nama': 'Bahasa inggris untuk presentasi bisnis',
+          'sks': 2,
+          'nilai_angka': 83,
+          'nilai_huruf': 'B+'
+        },
+        {
+          'no': 3,
+          'kode': 'MK203',
+          'nama': 'Bahasa indonesia',
+          'sks': 2,
+          'nilai_angka': 86,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 4,
+          'kode': 'MK204',
+          'nama': 'Pengenalan basis data',
+          'sks': 4,
+          'nilai_angka': 89,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 5,
+          'kode': 'MK205',
+          'nama': 'Konsep sistem informasi',
+          'sks': 3,
+          'nilai_angka': 84,
+          'nilai_huruf': 'B+'
+        },
+        {
+          'no': 6,
+          'kode': 'MK206',
+          'nama': 'Kewarganegaraan',
+          'sks': 2,
+          'nilai_angka': 87,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 7,
+          'kode': 'MK207',
+          'nama': 'Algoritma dan struktur data',
+          'sks': 4,
+          'nilai_angka': 90,
+          'nilai_huruf': 'A'
+        },
       ],
     },
     {
       'semester': 3,
       'ip': 3.80,
       'matkul': [
-        {'no': 1, 'kode': 'MK301', 'nama': 'Basis data lanjut', 'sks': 4, 'nilai_angka': 88, 'nilai_huruf': 'A-'},
-        {'no': 2, 'kode': 'MK302', 'nama': 'Sistem informasi akuntansi dan keuangan', 'sks': 3, 'nilai_angka': 85, 'nilai_huruf': 'A-'},
-        {'no': 3, 'kode': 'MK303', 'nama': 'Statistika & probabilitas', 'sks': 3, 'nilai_angka': 86, 'nilai_huruf': 'A-'},
-        {'no': 4, 'kode': 'MK304', 'nama': 'Sistem operasi', 'sks': 4, 'nilai_angka': 89, 'nilai_huruf': 'A-'},
-        {'no': 5, 'kode': 'MK305', 'nama': 'Fisika dasar', 'sks': 3, 'nilai_angka': 84, 'nilai_huruf': 'B+'},
-        {'no': 6, 'kode': 'MK306', 'nama': 'Organisasi dan arsitektur komputer', 'sks': 3, 'nilai_angka': 87, 'nilai_huruf': 'A-'},
-        {'no': 7, 'kode': 'MK307', 'nama': 'Analisis proses bisnis', 'sks': 3, 'nilai_angka': 90, 'nilai_huruf': 'A'},
+        {
+          'no': 1,
+          'kode': 'MK301',
+          'nama': 'Basis data lanjut',
+          'sks': 4,
+          'nilai_angka': 88,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 2,
+          'kode': 'MK302',
+          'nama': 'Sistem informasi akuntansi dan keuangan',
+          'sks': 3,
+          'nilai_angka': 85,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 3,
+          'kode': 'MK303',
+          'nama': 'Statistika & probabilitas',
+          'sks': 3,
+          'nilai_angka': 86,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 4,
+          'kode': 'MK304',
+          'nama': 'Sistem operasi',
+          'sks': 4,
+          'nilai_angka': 89,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 5,
+          'kode': 'MK305',
+          'nama': 'Fisika dasar',
+          'sks': 3,
+          'nilai_angka': 84,
+          'nilai_huruf': 'B+'
+        },
+        {
+          'no': 6,
+          'kode': 'MK306',
+          'nama': 'Organisasi dan arsitektur komputer',
+          'sks': 3,
+          'nilai_angka': 87,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 7,
+          'kode': 'MK307',
+          'nama': 'Analisis proses bisnis',
+          'sks': 3,
+          'nilai_angka': 90,
+          'nilai_huruf': 'A'
+        },
       ],
     },
     {
       'semester': 4,
       'ip': 3.72,
       'matkul': [
-        {'no': 1, 'kode': 'MK401', 'nama': 'Rekayasa perangkat lunak', 'sks': 4, 'nilai_angka': 86, 'nilai_huruf': 'A-'},
-        {'no': 2, 'kode': 'MK402', 'nama': 'Data warehouse', 'sks': 3, 'nilai_angka': 83, 'nilai_huruf': 'B+'},
-        {'no': 3, 'kode': 'MK403', 'nama': 'Pemrograman berbasis web', 'sks': 4, 'nilai_angka': 88, 'nilai_huruf': 'A-'},
-        {'no': 4, 'kode': 'MK404', 'nama': 'Manajemen sistem informasi', 'sks': 3, 'nilai_angka': 84, 'nilai_huruf': 'B+'},
-        {'no': 5, 'kode': 'MK405', 'nama': 'Jaringan dan keamanan sistem', 'sks': 4, 'nilai_angka': 89, 'nilai_huruf': 'A-'},
-        {'no': 6, 'kode': 'MK406', 'nama': 'Pemrograman berorientasi objek', 'sks': 4, 'nilai_angka': 90, 'nilai_huruf': 'A'},
-        {'no': 7, 'kode': 'MK407', 'nama': 'Analisa dan perancangan sistem informasi', 'sks': 3, 'nilai_angka': 87, 'nilai_huruf': 'A-'},
+        {
+          'no': 1,
+          'kode': 'MK401',
+          'nama': 'Rekayasa perangkat lunak',
+          'sks': 4,
+          'nilai_angka': 86,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 2,
+          'kode': 'MK402',
+          'nama': 'Data warehouse',
+          'sks': 3,
+          'nilai_angka': 83,
+          'nilai_huruf': 'B+'
+        },
+        {
+          'no': 3,
+          'kode': 'MK403',
+          'nama': 'Pemrograman berbasis web',
+          'sks': 4,
+          'nilai_angka': 88,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 4,
+          'kode': 'MK404',
+          'nama': 'Manajemen sistem informasi',
+          'sks': 3,
+          'nilai_angka': 84,
+          'nilai_huruf': 'B+'
+        },
+        {
+          'no': 5,
+          'kode': 'MK405',
+          'nama': 'Jaringan dan keamanan sistem',
+          'sks': 4,
+          'nilai_angka': 89,
+          'nilai_huruf': 'A-'
+        },
+        {
+          'no': 6,
+          'kode': 'MK406',
+          'nama': 'Pemrograman berorientasi objek',
+          'sks': 4,
+          'nilai_angka': 90,
+          'nilai_huruf': 'A'
+        },
+        {
+          'no': 7,
+          'kode': 'MK407',
+          'nama': 'Analisa dan perancangan sistem informasi',
+          'sks': 3,
+          'nilai_angka': 87,
+          'nilai_huruf': 'A-'
+        },
       ],
     },
   ];
@@ -80,12 +284,27 @@ class _ProfilePageState extends State<ProfilePage> {
     {
       'semester': 1,
       'matkul': [
-        {'no': 1, 'kode': 'MK101', 'nama': 'Kepemimpinan & keterampilan interpersonal', 'sks': 3},
+        {
+          'no': 1,
+          'kode': 'MK101',
+          'nama': 'Kepemimpinan & keterampilan interpersonal',
+          'sks': 3
+        },
         {'no': 2, 'kode': 'MK102', 'nama': 'Aljabar linear', 'sks': 3},
-        {'no': 3, 'kode': 'MK103', 'nama': 'Pengantar teknologi informasi', 'sks': 3},
+        {
+          'no': 3,
+          'kode': 'MK103',
+          'nama': 'Pengantar teknologi informasi',
+          'sks': 3
+        },
         {'no': 4, 'kode': 'MK104', 'nama': 'Pancasila', 'sks': 2},
         {'no': 5, 'kode': 'MK105', 'nama': 'Bahasa inggris umum', 'sks': 2},
-        {'no': 6, 'kode': 'MK106', 'nama': 'Pengenalan algoritma dan pemrograman', 'sks': 4},
+        {
+          'no': 6,
+          'kode': 'MK106',
+          'nama': 'Pengenalan algoritma dan pemrograman',
+          'sks': 4
+        },
         {'no': 7, 'kode': 'MK107', 'nama': 'Pendidikan agama', 'sks': 2},
         {'no': 8, 'kode': 'MK108', 'nama': 'Budaya bangsa', 'sks': 3},
       ],
@@ -94,46 +313,121 @@ class _ProfilePageState extends State<ProfilePage> {
       'semester': 2,
       'matkul': [
         {'no': 1, 'kode': 'MK201', 'nama': 'E-business', 'sks': 3},
-        {'no': 2, 'kode': 'MK202', 'nama': 'Bahasa inggris untuk presentasi bisnis', 'sks': 2},
+        {
+          'no': 2,
+          'kode': 'MK202',
+          'nama': 'Bahasa inggris untuk presentasi bisnis',
+          'sks': 2
+        },
         {'no': 3, 'kode': 'MK203', 'nama': 'Bahasa indonesia', 'sks': 2},
         {'no': 4, 'kode': 'MK204', 'nama': 'Pengenalan basis data', 'sks': 4},
         {'no': 5, 'kode': 'MK205', 'nama': 'Konsep sistem informasi', 'sks': 3},
         {'no': 6, 'kode': 'MK206', 'nama': 'Kewarganegaraan', 'sks': 2},
-        {'no': 7, 'kode': 'MK207', 'nama': 'Algoritma dan struktur data', 'sks': 4},
+        {
+          'no': 7,
+          'kode': 'MK207',
+          'nama': 'Algoritma dan struktur data',
+          'sks': 4
+        },
       ],
     },
     {
       'semester': 3,
       'matkul': [
         {'no': 1, 'kode': 'MK301', 'nama': 'Basis data lanjut', 'sks': 4},
-        {'no': 2, 'kode': 'MK302', 'nama': 'Sistem informasi akuntansi dan keuangan', 'sks': 3},
-        {'no': 3, 'kode': 'MK303', 'nama': 'Statistika & probabilitas', 'sks': 3},
+        {
+          'no': 2,
+          'kode': 'MK302',
+          'nama': 'Sistem informasi akuntansi dan keuangan',
+          'sks': 3
+        },
+        {
+          'no': 3,
+          'kode': 'MK303',
+          'nama': 'Statistika & probabilitas',
+          'sks': 3
+        },
         {'no': 4, 'kode': 'MK304', 'nama': 'Sistem operasi', 'sks': 4},
         {'no': 5, 'kode': 'MK305', 'nama': 'Fisika dasar', 'sks': 3},
-        {'no': 6, 'kode': 'MK306', 'nama': 'Organisasi dan arsitektur komputer', 'sks': 3},
+        {
+          'no': 6,
+          'kode': 'MK306',
+          'nama': 'Organisasi dan arsitektur komputer',
+          'sks': 3
+        },
         {'no': 7, 'kode': 'MK307', 'nama': 'Analisis proses bisnis', 'sks': 3},
       ],
     },
     {
       'semester': 4,
       'matkul': [
-        {'no': 1, 'kode': 'MK401', 'nama': 'Rekayasa perangkat lunak', 'sks': 4},
+        {
+          'no': 1,
+          'kode': 'MK401',
+          'nama': 'Rekayasa perangkat lunak',
+          'sks': 4
+        },
         {'no': 2, 'kode': 'MK402', 'nama': 'Data warehouse', 'sks': 3},
-        {'no': 3, 'kode': 'MK403', 'nama': 'Pemrograman berbasis web', 'sks': 4},
-        {'no': 4, 'kode': 'MK404', 'nama': 'Manajemen sistem informasi', 'sks': 3},
-        {'no': 5, 'kode': 'MK405', 'nama': 'Jaringan dan keamanan sistem', 'sks': 4},
-        {'no': 6, 'kode': 'MK406', 'nama': 'Pemrograman berorientasi objek', 'sks': 4},
-        {'no': 7, 'kode': 'MK407', 'nama': 'Analisa dan perancangan sistem informasi', 'sks': 3},
+        {
+          'no': 3,
+          'kode': 'MK403',
+          'nama': 'Pemrograman berbasis web',
+          'sks': 4
+        },
+        {
+          'no': 4,
+          'kode': 'MK404',
+          'nama': 'Manajemen sistem informasi',
+          'sks': 3
+        },
+        {
+          'no': 5,
+          'kode': 'MK405',
+          'nama': 'Jaringan dan keamanan sistem',
+          'sks': 4
+        },
+        {
+          'no': 6,
+          'kode': 'MK406',
+          'nama': 'Pemrograman berorientasi objek',
+          'sks': 4
+        },
+        {
+          'no': 7,
+          'kode': 'MK407',
+          'nama': 'Analisa dan perancangan sistem informasi',
+          'sks': 3
+        },
       ],
     },
     {
       'semester': 5,
       'matkul': [
-        {'no': 1, 'kode': 'MK501', 'nama': 'Pemrograman perangkat bergerak', 'sks': 4},
-        {'no': 2, 'kode': 'MK502', 'nama': 'Perencanaan strategi sistem informasi', 'sks': 3},
-        {'no': 3, 'kode': 'MK503', 'nama': 'Sistem enterprise resource planning', 'sks': 3},
+        {
+          'no': 1,
+          'kode': 'MK501',
+          'nama': 'Pemrograman perangkat bergerak',
+          'sks': 4
+        },
+        {
+          'no': 2,
+          'kode': 'MK502',
+          'nama': 'Perencanaan strategi sistem informasi',
+          'sks': 3
+        },
+        {
+          'no': 3,
+          'kode': 'MK503',
+          'nama': 'Sistem enterprise resource planning',
+          'sks': 3
+        },
         {'no': 4, 'kode': 'MK504', 'nama': 'Metodologi penelitian', 'sks': 3},
-        {'no': 5, 'kode': 'MK505', 'nama': 'Testing dan implementasi sistem', 'sks': 4},
+        {
+          'no': 5,
+          'kode': 'MK505',
+          'nama': 'Testing dan implementasi sistem',
+          'sks': 4
+        },
         {'no': 6, 'kode': 'MK506', 'nama': 'Riset operasi', 'sks': 3},
         {'no': 7, 'kode': 'MK507', 'nama': 'Etika profesi', 'sks': 2},
         {'no': 8, 'kode': 'MK508', 'nama': 'Magang', 'sks': 3},
@@ -143,17 +437,52 @@ class _ProfilePageState extends State<ProfilePage> {
       'semester': 6,
       'matkul': [
         {'no': 1, 'kode': 'MK601', 'nama': 'Sistem cerdas', 'sks': 3},
-        {'no': 2, 'kode': 'MK602', 'nama': 'Interaksi manusia dan komputer', 'sks': 3},
+        {
+          'no': 2,
+          'kode': 'MK602',
+          'nama': 'Interaksi manusia dan komputer',
+          'sks': 3
+        },
         {'no': 3, 'kode': 'MK603', 'nama': 'Technopreneurship', 'sks': 3},
         {'no': 4, 'kode': 'MK604', 'nama': 'Teknik data mining', 'sks': 3},
-        {'no': 5, 'kode': 'MK605', 'nama': 'Sistem pendukung keputusan', 'sks': 3},
-        {'no': 6, 'kode': 'MK606', 'nama': 'Computing assisted audit tools & techniques', 'sks': 3},
-        {'no': 7, 'kode': 'MK607', 'nama': 'Information system audit', 'sks': 3},
+        {
+          'no': 5,
+          'kode': 'MK605',
+          'nama': 'Sistem pendukung keputusan',
+          'sks': 3
+        },
+        {
+          'no': 6,
+          'kode': 'MK606',
+          'nama': 'Computing assisted audit tools & techniques',
+          'sks': 3
+        },
+        {
+          'no': 7,
+          'kode': 'MK607',
+          'nama': 'Information system audit',
+          'sks': 3
+        },
         {'no': 8, 'kode': 'MK608', 'nama': 'Digital and new media', 'sks': 3},
         {'no': 9, 'kode': 'MK609', 'nama': 'E-business design', 'sks': 3},
-        {'no': 10, 'kode': 'MK610', 'nama': 'Developing business applications', 'sks': 3},
-        {'no': 11, 'kode': 'MK611', 'nama': 'Web services applications', 'sks': 3},
-        {'no': 12, 'kode': 'MK612', 'nama': 'Komputasi awan dan blockchain', 'sks': 3},
+        {
+          'no': 10,
+          'kode': 'MK610',
+          'nama': 'Developing business applications',
+          'sks': 3
+        },
+        {
+          'no': 11,
+          'kode': 'MK611',
+          'nama': 'Web services applications',
+          'sks': 3
+        },
+        {
+          'no': 12,
+          'kode': 'MK612',
+          'nama': 'Komputasi awan dan blockchain',
+          'sks': 3
+        },
         {'no': 13, 'kode': 'MK613', 'nama': 'Karya tulis ilmiah', 'sks': 3},
         {'no': 14, 'kode': 'MK614', 'nama': 'KKN', 'sks': 3},
       ],
@@ -161,16 +490,36 @@ class _ProfilePageState extends State<ProfilePage> {
     {
       'semester': 7,
       'matkul': [
-        {'no': 1, 'kode': 'MK701', 'nama': 'Pemrograman animasi dan multimedia', 'sks': 3},
+        {
+          'no': 1,
+          'kode': 'MK701',
+          'nama': 'Pemrograman animasi dan multimedia',
+          'sks': 3
+        },
         {'no': 2, 'kode': 'MK702', 'nama': 'Hukum paten dan merk', 'sks': 2},
-        {'no': 3, 'kode': 'MK703', 'nama': 'Kapita selekta ilmu komputer', 'sks': 3},
+        {
+          'no': 3,
+          'kode': 'MK703',
+          'nama': 'Kapita selekta ilmu komputer',
+          'sks': 3
+        },
         {'no': 4, 'kode': 'MK704', 'nama': 'Text mining', 'sks': 3},
         {'no': 5, 'kode': 'MK705', 'nama': 'Business web solution', 'sks': 3},
         {'no': 6, 'kode': 'MK706', 'nama': 'Analisis big data', 'sks': 3},
         {'no': 7, 'kode': 'MK707', 'nama': 'IT in financial market', 'sks': 3},
         {'no': 8, 'kode': 'MK708', 'nama': 'IT governance', 'sks': 3},
-        {'no': 9, 'kode': 'MK709', 'nama': 'Integrasi aplikasi korporasi', 'sks': 3},
-        {'no': 10, 'kode': 'MK710', 'nama': 'Teknologi opensource dan terbaru', 'sks': 3},
+        {
+          'no': 9,
+          'kode': 'MK709',
+          'nama': 'Integrasi aplikasi korporasi',
+          'sks': 3
+        },
+        {
+          'no': 10,
+          'kode': 'MK710',
+          'nama': 'Teknologi opensource dan terbaru',
+          'sks': 3
+        },
       ],
     },
     {
@@ -246,7 +595,7 @@ class _ProfilePageState extends State<ProfilePage> {
     {
       'semester': 1,
       'jumlah': 'Rp 5.000.000',
-      'tanggal_bayar': '20 September 2023',
+      'tanggal_bayar': '10 Juli 2023',
       'metode': 'VA',
       'lunas': true
     },
@@ -274,7 +623,7 @@ class _ProfilePageState extends State<ProfilePage> {
     {
       'semester': 5,
       'jumlah': 'Rp 5.000.000',
-      'tanggal_bayar': '30 Juli 2025',
+      'tanggal_bayar': '30 Juni 2025',
       'metode': 'VA',
       'lunas': true
     },
@@ -301,6 +650,7 @@ class _ProfilePageState extends State<ProfilePage> {
   // --- Widget untuk masing-masing halaman ---
 
   Widget _buildBiodataSection() {
+    // Data biodata
     final Map<String, dynamic> biodata = {
       'Nama': widget.userName,
       'NIM': widget.userNim,
@@ -415,8 +765,7 @@ class _ProfilePageState extends State<ProfilePage> {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: DataTable(
-              headingRowColor:
-                  WidgetStateProperty.all(const Color(0xFFF0F4F7)),
+              headingRowColor: WidgetStateProperty.all(const Color(0xFFF0F4F7)),
               columns: const [
                 DataColumn(label: Text('Semester')),
                 DataColumn(label: Text('Jumlah')),
@@ -497,7 +846,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Text(
                           isCurrentSemester
                               ? 'Saat Ini'
-                              : (isFutureSemester ? 'Belum Ditempuh' : 'Sudah Ditempuh'),
+                              : (isFutureSemester
+                                  ? 'Belum Ditempuh'
+                                  : 'Sudah Ditempuh'),
                           style: const TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
@@ -562,7 +913,7 @@ class _ProfilePageState extends State<ProfilePage> {
             height: 50,
             child: ElevatedButton.icon(
               onPressed: () {
-                // Dummy function for "Cetak KRS"
+                // Dummy action untuk cetak KRS
               },
               icon: const Icon(Icons.picture_as_pdf, color: Colors.white),
               label: const Text(
@@ -686,7 +1037,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
-  
+
   // Widget pembantu untuk membangun tombol profil
   Widget _buildProfileButton(int index, String label, IconData icon) {
     final bool isSelected = _selectedIndex == index;
@@ -724,8 +1075,9 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  // Widget baru untuk menampilkan daftar mata kuliah dalam list yang rapi
-  Widget _buildCourseCard(String courseName, String courseCode, String sks, String? grade) {
+  // Widget daftar mata kuliah dalam list
+  Widget _buildCourseCard(
+      String courseName, String courseCode, String sks, String? grade) {
     return Container(
       margin: const EdgeInsets.only(bottom: 8.0, left: 16.0, right: 16.0),
       padding: const EdgeInsets.all(12.0),
@@ -764,8 +1116,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ],
           ),
-          if (grade != null)
-            const SizedBox(height: 4),
+          if (grade != null) const SizedBox(height: 4),
           if (grade != null)
             Text(
               grade,
@@ -791,6 +1142,18 @@ class _ProfilePageState extends State<ProfilePage> {
           'Profil',
           style: TextStyle(color: Color(0xFFECF0F1)),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout, color: Color(0xFFECF0F1)),
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
+                (Route<dynamic> route) => false,
+              );
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(

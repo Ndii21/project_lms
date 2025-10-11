@@ -62,9 +62,6 @@ class SchedulePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Menghitung IPK (rata-rata)
-    // IPK calculation removed as it's not relevant here but retained in grades_page
-
     return Scaffold(
       backgroundColor: const Color(0xFFECF0F1),
       appBar: AppBar(

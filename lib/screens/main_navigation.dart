@@ -8,13 +8,18 @@ import 'grades_page.dart';
 import 'profile_page.dart';
 
 class MainNavigation extends StatefulWidget {
+  // Data yang diterima dari Login Page
+  final String userId;
   final String userName;
   final String userNim;
+  final String userRole;
 
   const MainNavigation({
     Key? key,
+    required this.userId,
     required this.userName,
     required this.userNim,
+    required this.userRole,
   }) : super(key: key);
 
   @override
@@ -22,26 +27,26 @@ class MainNavigation extends StatefulWidget {
 }
 
 class _MainNavigationState extends State<MainNavigation> {
-  // Index halaman yang sedang aktif
   int _currentIndex = 0;
-
-  // Daftar halaman yang akan ditampilkan
   late final List<Widget> _pages;
 
   @override
   void initState() {
     super.initState();
-    // Inisialisasi list halaman
+    // Kita inisialisasi halaman dengan mengirimkan data user yang sesuai
     _pages = [
-      DashboardPage(userName: widget.userName, onQuickAccessTap: _onQuickAccessTap),
-      const SchedulePage(),
-      const MaterialsPage(),
+      DashboardPage(
+        userId: widget.userId, 
+        userName: widget.userName, 
+        onQuickAccessTap: _onQuickAccessTap
+      ),
+      SchedulePage(userId: widget.userId),
+      MaterialsPage(userId: widget.userId),
       const GradesPage(),
       ProfilePage(userName: widget.userName, userNim: widget.userNim),
     ];
   }
 
-  // Fungsi untuk mengubah index halaman saat tombol akses cepat di dashboard diklik
   void _onQuickAccessTap(int index) {
     setState(() {
       _currentIndex = index;
@@ -52,7 +57,6 @@ class _MainNavigationState extends State<MainNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_currentIndex],
-      // Bottom Navigation Bar untuk navigasi antar halaman
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
@@ -68,25 +72,11 @@ class _MainNavigationState extends State<MainNavigation> {
         unselectedFontSize: 12,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard),
-            label: 'Dashboard',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.schedule),
-            label: 'Jadwal',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: 'Materi',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.grade),
-            label: 'Nilai',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
+              icon: Icon(Icons.dashboard), label: 'Dashboard'),
+          BottomNavigationBarItem(icon: Icon(Icons.schedule), label: 'Jadwal'),
+          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Materi'),
+          BottomNavigationBarItem(icon: Icon(Icons.grade), label: 'Nilai'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
         ],
       ),
     );

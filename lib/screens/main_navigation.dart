@@ -42,8 +42,13 @@ class _MainNavigationState extends State<MainNavigation> {
       ),
       SchedulePage(userId: widget.userId),
       MaterialsPage(userId: widget.userId),
+      GradesPage(userId: widget.userId),
       const GradesPage(),
-      ProfilePage(userName: widget.userName, userNim: widget.userNim),
+      ProfilePage(
+        userId: widget.userId,   // <-- Tambahkan baris ini!
+        userName: widget.userName, 
+        userNim: widget.userNim
+      ),
     ];
   }
 

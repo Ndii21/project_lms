@@ -87,8 +87,17 @@ class KrsItem {
   final String nama;
   final String sks;
   final String hari;
+  final String status;
+  final String semester; // TAMBAHAN BARU
 
-  KrsItem({required this.kode, required this.nama, required this.sks, required this.hari});
+  KrsItem({
+    required this.kode, 
+    required this.nama, 
+    required this.sks, 
+    required this.hari,
+    required this.status,
+    required this.semester, // TAMBAHAN
+  });
 
   factory KrsItem.fromJson(Map<String, dynamic> json) {
     return KrsItem(
@@ -96,6 +105,8 @@ class KrsItem {
       nama: json['nama_mk'],
       sks: json['sks'],
       hari: json['hari'],
+      status: json['status_persetujuan'] ?? 'Pending',
+      semester: json['semester_ambil'] ?? '0', // TAMBAHAN DARI API
     );
   }
 }

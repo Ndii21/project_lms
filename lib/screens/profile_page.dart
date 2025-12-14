@@ -26,7 +26,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   // Index untuk mengontrol halaman mana yang aktif
   int _selectedIndex = 0;
-  
+
   // Variable untuk menampung data dari API
   late Future<ProfileModel> _futureProfile;
 
@@ -79,12 +79,16 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           const Text(
             'Data Diri Mahasiswa',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF2C3E50)),
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF2C3E50)),
           ),
           const SizedBox(height: 12),
           _buildDetailRow('Nama', data.nama),
           _buildDetailRow('NIM', data.nim),
-          _buildDetailRow('Jenis Kelamin', data.gender == 'L' ? 'Laki-laki' : 'Perempuan'),
+          _buildDetailRow(
+              'Jenis Kelamin', data.gender == 'L' ? 'Laki-laki' : 'Perempuan'),
           _buildDetailRow('Tgl Lahir', data.tglLahir),
           _buildDetailRow('Alamat', data.alamat),
           _buildDetailRow('No HP', data.hp),
@@ -94,7 +98,11 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildAkademikSection(List<AkademikItem> data) {
-    if (data.isEmpty) return const Center(child: Padding(padding: EdgeInsets.all(20), child: Text("Belum ada data nilai.")));
+    if (data.isEmpty)
+      return const Center(
+          child: Padding(
+              padding: EdgeInsets.all(20),
+              child: Text("Belum ada data nilai.")));
 
     // 1. LOGIKA GROUPING: Kelompokkan list datar menjadi Map per Semester
     // Contoh hasil: { "1": [Matkul A, Matkul B], "2": [Matkul C] }
@@ -114,10 +122,13 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           const Text(
             'Riwayat Akademik',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF2C3E50)),
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF2C3E50)),
           ),
           const SizedBox(height: 12),
-          
+
           // Loop setiap Semester yang ada
           ...groupedData.entries.map((entry) {
             String semester = entry.key;
@@ -125,37 +136,49 @@ class _ProfilePageState extends State<ProfilePage> {
 
             // Hitung IPS Sederhana (Opsional, visual saja)
             // Di real case, hitung bobot sks * nilai / total sks
-            
+
             return Card(
               elevation: 2,
               margin: const EdgeInsets.only(bottom: 16),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
               child: ExpansionTile(
-                initiallyExpanded: semester == '5', // Semester 5 otomatis terbuka
-                tilePadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                initiallyExpanded:
+                    semester == '5', // Semester 5 otomatis terbuka
+                tilePadding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'Semester $semester',
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF3498DB)),
+                      style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF3498DB)),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF27AE60).withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(8)
-                      ),
-                      child: Text('${matkulList.length} Matkul', style: const TextStyle(fontSize: 12, color: Color(0xFF27AE60), fontWeight: FontWeight.bold)),
+                          color: const Color(0xFF27AE60).withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Text('${matkulList.length} Matkul',
+                          style: const TextStyle(
+                              fontSize: 12,
+                              color: Color(0xFF27AE60),
+                              fontWeight: FontWeight.bold)),
                     )
                   ],
                 ),
                 children: matkulList.map((item) {
                   return Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
-                      border: Border(top: BorderSide(color: Colors.grey.withOpacity(0.1)))
-                    ),
+                        border: Border(
+                            top: BorderSide(
+                                color: Colors.grey.withOpacity(0.1)))),
                     child: _buildCourseCard(
                       item.nama,
                       item.kode,
@@ -173,7 +196,11 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildRegistrasiSection(List<RegistrasiItem> data) {
-    if (data.isEmpty) return const Center(child: Padding(padding: EdgeInsets.all(20), child: Text("Belum ada data registrasi.")));
+    if (data.isEmpty)
+      return const Center(
+          child: Padding(
+              padding: EdgeInsets.all(20),
+              child: Text("Belum ada data registrasi.")));
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -182,13 +209,17 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           const Text(
             'Riwayat Registrasi',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF2C3E50)),
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF2C3E50)),
           ),
           const SizedBox(height: 12),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: DataTable(
-              headingRowColor: MaterialStateProperty.all(const Color(0xFFF0F4F7)),
+              headingRowColor:
+                  MaterialStateProperty.all(const Color(0xFFF0F4F7)),
               columns: const [
                 DataColumn(label: Text('Smt')),
                 DataColumn(label: Text('Jumlah')),
@@ -202,12 +233,15 @@ class _ProfilePageState extends State<ProfilePage> {
                     DataCell(Text(reg.jumlah)),
                     DataCell(Text(reg.tanggal)),
                     DataCell(Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
-                        color: reg.status == 'Lunas' ? Colors.green : Colors.red,
-                        borderRadius: BorderRadius.circular(12)
-                      ),
-                      child: Text(reg.status, style: const TextStyle(color: Colors.white, fontSize: 10)),
+                          color:
+                              reg.status == 'Lunas' ? Colors.green : Colors.red,
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Text(reg.status,
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 10)),
                     )),
                   ],
                 );
@@ -220,7 +254,20 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildKurikulumSection(List<KurikulumItem> data) {
-    if (data.isEmpty) return const Center(child: Padding(padding: EdgeInsets.all(20), child: Text("Data kurikulum kosong.")));
+    if (data.isEmpty)
+      return const Center(
+          child: Padding(
+              padding: EdgeInsets.all(20),
+              child: Text("Data kurikulum kosong.")));
+
+    // 1. Grouping Data berdasarkan Semester Paket
+    Map<String, List<KurikulumItem>> groupedData = {};
+    for (var item in data) {
+      if (!groupedData.containsKey(item.semester)) {
+        groupedData[item.semester] = [];
+      }
+      groupedData[item.semester]!.add(item);
+    }
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -229,30 +276,71 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           const Text(
             'Daftar Kurikulum',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF2C3E50)),
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF2C3E50)),
           ),
           const SizedBox(height: 12),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              final matkul = data[index];
-              return _buildCourseCard(
-                matkul.nama,
-                matkul.kode,
-                '${matkul.sks} SKS',
-                'Semester ${matkul.semester}',
-              );
-            },
-          ),
+
+          // Loop setiap Semester
+          ...groupedData.entries.map((entry) {
+            String semester = entry.key;
+            List<KurikulumItem> matkulList = entry.value;
+
+            return Card(
+              elevation: 2,
+              margin: const EdgeInsets.only(bottom: 16),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+              child: ExpansionTile(
+                tilePadding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                title: Text(
+                  'Semester $semester',
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF3498DB)),
+                ),
+                children: matkulList.map((item) {
+                  return Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            top: BorderSide(
+                                color: Colors.grey.withOpacity(0.1)))),
+                    child: _buildCourseCard(
+                      item.nama,
+                      item.kode,
+                      '${item.sks} SKS',
+                      'Wajib', // Info tambahan
+                    ),
+                  );
+                }).toList(),
+              ),
+            );
+          }).toList(),
         ],
       ),
     );
   }
 
   Widget _buildKrsSection(List<KrsItem> data) {
-    if (data.isEmpty) return const Center(child: Padding(padding: EdgeInsets.all(20), child: Text("Belum ada KRS.")));
+    if (data.isEmpty)
+      return const Center(
+          child: Padding(
+              padding: EdgeInsets.all(20), child: Text("Belum ada KRS.")));
+
+    // 1. Grouping Data berdasarkan Semester Ambil
+    Map<String, List<KrsItem>> groupedData = {};
+    for (var item in data) {
+      if (!groupedData.containsKey(item.semester)) {
+        groupedData[item.semester] = [];
+      }
+      groupedData[item.semester]!.add(item);
+    }
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -260,57 +348,154 @@ class _ProfilePageState extends State<ProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'KRS Semester Ini',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF2C3E50)),
+            'Riwayat KRS',
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF2C3E50)),
           ),
-          const SizedBox(height: 16),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              final krs = data[index];
-              return _buildKrsCard(
-                krs.nama,
-                krs.hari, // Menggunakan Hari dari API
-                '${krs.sks} SKS', 
-                'Disetujui',
-              );
-            },
-          ),
+          const SizedBox(height: 12),
+
+          // Loop setiap Semester
+          ...groupedData.entries.map((entry) {
+            String semester = entry.key;
+            List<KrsItem> krsList = entry.value;
+
+            return Card(
+              elevation: 2,
+              margin: const EdgeInsets.only(bottom: 16),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+              child: ExpansionTile(
+                initiallyExpanded: semester == '5', // Otomatis buka semester 5
+                tilePadding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                title: Text(
+                  'Semester $semester',
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF3498DB)),
+                ),
+                children: krsList.map((krs) {
+                  // Logic Warna Status
+                  Color statusColor = (krs.status == 'Disetujui')
+                      ? const Color(0xFF27AE60)
+                      : (krs.status == 'Pending'
+                          ? const Color(0xFFE67E22)
+                          : const Color(0xFFE74C3C));
+
+                  return Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            top: BorderSide(
+                                color: Colors.grey.withOpacity(0.1)))),
+                    // Menggunakan Helper _buildKrsCard yang sudah ada
+                    child: _buildKrsCardInternal(krs.nama, krs.hari,
+                        '${krs.sks} SKS', krs.status, statusColor),
+                  );
+                }).toList(),
+              ),
+            );
+          }).toList(),
         ],
       ),
     );
   }
 
+  // NOTE: Saya buat helper baru _buildKrsCardInternal agar tidak bentrok layoutnya
+  // Karena _buildKrsCard yang lama pakai margin/shadow sendiri (Card dalam Card terlihat aneh)
+  Widget _buildKrsCardInternal(String subject, String time, String info,
+      String status, Color statusColor) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(subject,
+            style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF2C3E50))),
+        const SizedBox(height: 4),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.access_time,
+                    size: 14, color: Color(0xFF3498DB)),
+                const SizedBox(width: 4),
+                Text(time,
+                    style: const TextStyle(
+                        fontSize: 12, color: Color(0xFF2C3E50))),
+              ],
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              decoration: BoxDecoration(
+                  color: statusColor, borderRadius: BorderRadius.circular(4)),
+              child: Text(status,
+                  style: const TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white)),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
   // --- Widget Helper (Sama seperti desain Anda) ---
 
-  Widget _buildKrsCard(String subject, String time, String lecturer, String status) {
+  // Update parameter fungsi ini
+  Widget _buildKrsCard(String subject, String time, String info, String status,
+      Color statusColor) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: const [BoxShadow(color: Color(0xFFE0E0E0), spreadRadius: 1, blurRadius: 5, offset: Offset(0, 2))],
+        boxShadow: const [
+          BoxShadow(
+              color: Color(0xFFE0E0E0),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: Offset(0, 2))
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(subject, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF2C3E50))),
+          Text(subject,
+              style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF2C3E50))),
           const SizedBox(height: 8),
           Row(
             children: [
               const Icon(Icons.access_time, size: 16, color: Color(0xFF3498DB)),
               const SizedBox(width: 8),
-              Text(time, style: const TextStyle(fontSize: 14, color: Color(0xFF2C3E50))),
+              Text(time,
+                  style:
+                      const TextStyle(fontSize: 14, color: Color(0xFF2C3E50))),
             ],
           ),
           const SizedBox(height: 8),
+          // Bagian Label Status
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            decoration: BoxDecoration(color: const Color(0xFF27AE60), borderRadius: BorderRadius.circular(6)),
-            child: Text(status, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: Colors.white)),
+            decoration: BoxDecoration(
+                color: statusColor, // Gunakan warna dari parameter
+                borderRadius: BorderRadius.circular(6)),
+            child: Text(status,
+                style: const TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white)),
           ),
         ],
       ),
@@ -323,8 +508,14 @@ class _ProfilePageState extends State<ProfilePage> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(width: 120, child: Text('$label:', style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF2C3E50)))),
-          Expanded(child: Text(value, style: const TextStyle(color: Color(0xFF2C3E50)))),
+          SizedBox(
+              width: 120,
+              child: Text('$label:',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Color(0xFF2C3E50)))),
+          Expanded(
+              child: Text(value,
+                  style: const TextStyle(color: Color(0xFF2C3E50)))),
         ],
       ),
     );
@@ -346,34 +537,56 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         child: Column(
           children: [
-            Icon(icon, color: isSelected ? Colors.white : const Color(0xFF2C3E50), size: 24),
+            Icon(icon,
+                color: isSelected ? Colors.white : const Color(0xFF2C3E50),
+                size: 24),
             const SizedBox(height: 4),
-            Text(label, style: TextStyle(fontSize: 10, color: isSelected ? Colors.white : const Color(0xFF2C3E50), fontWeight: isSelected ? FontWeight.bold : FontWeight.normal)),
+            Text(label,
+                style: TextStyle(
+                    fontSize: 10,
+                    color: isSelected ? Colors.white : const Color(0xFF2C3E50),
+                    fontWeight:
+                        isSelected ? FontWeight.bold : FontWeight.normal)),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildCourseCard(String courseName, String courseCode, String info1, String info2) {
+  Widget _buildCourseCard(
+      String courseName, String courseCode, String info1, String info2) {
     return Container(
       margin: const EdgeInsets.only(bottom: 8.0),
       padding: const EdgeInsets.all(12.0),
-      decoration: BoxDecoration(color: const Color(0xFFF0F4F7), borderRadius: BorderRadius.circular(10)),
+      decoration: BoxDecoration(
+          color: const Color(0xFFF0F4F7),
+          borderRadius: BorderRadius.circular(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(courseName, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF2C3E50))),
+          Text(courseName,
+              style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF2C3E50))),
           const SizedBox(height: 4),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(courseCode, style: const TextStyle(fontSize: 12, color: Color(0xFF2C3E50))),
-              Text(info1, style: const TextStyle(fontSize: 12, color: Color(0xFF2C3E50))),
+              Text(courseCode,
+                  style:
+                      const TextStyle(fontSize: 12, color: Color(0xFF2C3E50))),
+              Text(info1,
+                  style:
+                      const TextStyle(fontSize: 12, color: Color(0xFF2C3E50))),
             ],
           ),
           const SizedBox(height: 4),
-          Text(info2, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF27AE60))),
+          Text(info2,
+              style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF27AE60))),
         ],
       ),
     );
@@ -420,24 +633,31 @@ class _ProfilePageState extends State<ProfilePage> {
                     padding: const EdgeInsets.symmetric(vertical: 40),
                     decoration: const BoxDecoration(
                       color: Color(0xFF2C3E50),
-                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(30),
+                          bottomRight: Radius.circular(30)),
                     ),
                     child: Column(
                       children: [
                         const CircleAvatar(
                           radius: 50,
                           // Menggunakan asset lokal sesuai kode asli Anda
-                          backgroundImage: AssetImage('assets/bale.jpg'), 
+                          backgroundImage:
+                              AssetImage('lib/assets/images/bale.jpg'),
                         ),
                         const SizedBox(height: 12),
                         Text(
                           profile.biodata.nama, // Data Dinamis
-                          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFFECF0F1)),
+                          style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFECF0F1)),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           profile.biodata.nim, // Data Dinamis
-                          style: const TextStyle(fontSize: 16, color: Color(0xFFECF0F1)),
+                          style: const TextStyle(
+                              fontSize: 16, color: Color(0xFFECF0F1)),
                         ),
                       ],
                     ),
@@ -445,12 +665,19 @@ class _ProfilePageState extends State<ProfilePage> {
 
                   // Menu Navigasi Custom (Punya Anda)
                   Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 24),
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: const [BoxShadow(color: Color(0xFFE0E0E0), spreadRadius: 1, blurRadius: 5, offset: Offset(0, 2))],
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Color(0xFFE0E0E0),
+                            spreadRadius: 1,
+                            blurRadius: 5,
+                            offset: Offset(0, 2))
+                      ],
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
